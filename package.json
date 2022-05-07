@@ -1,0 +1,22 @@
+{
+  "name": "baemin_proj",
+  "version": "1.0.0",
+  "description": "배달의 민족 Vue.js 클론코딩",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stories2/baemin_proj.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stories2/baemin_proj/issues"
+  },
+  "homepage": "https://github.com/stories2/baemin_proj#readme",
+  "devDependencies": {
+    "@vue/cli": "^5.0.4"
+  }
+}
