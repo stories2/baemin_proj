@@ -15,7 +15,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # job의 이름 설정
+  # job의 이름 설정 asdfsaf
   deploy:
     runs-on: ubuntu-latest
     steps:
