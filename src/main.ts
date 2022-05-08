@@ -30,4 +30,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-createApp(App).use(router).use(BootstrapVue3).mount("#app");
+import { createRedux } from "./storePlugin";
+import { store } from "./store";
+
+createApp(App)
+  .use(router)
+  .use(BootstrapVue3)
+  .use(createRedux(store))
+  .mount("#app");
