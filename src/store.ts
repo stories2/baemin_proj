@@ -11,7 +11,9 @@ export const orderSlice = createSlice({
   },
   reducers: {
     addMenu: (state, action) => {
+      console.log("addMenu", action);
       state.orderList.push(action.payload);
+      console.log("order", state.orderList, state.orderList.length);
     },
     modifyMenu: (state, action) => {
       state.orderList[action.payload.idx] = action.payload.data;
