@@ -1,25 +1,32 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { OrderMenuModel } from "./interface/order.model";
 
-export const todoSlice = createSlice({
-  name: "todos",
+// https://velog.io/@gsh723/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC-Redux-Toolkit-%EC%9D%B4%EB%9E%80
+// action + reduce = slice
+
+export const orderSlice = createSlice({
+  name: "orders",
   initialState: {
-    todoList: [] as string[],
+    orderList: [] as OrderMenuModel[],
   },
   reducers: {
-    addTask: (state, action) => {
-      state.todoList.push(action.payload);
+    addMenu: (state, action) => {
+      state.orderList.push(action.payload);
     },
-    removeTodo: (state) => {
-      state.todoList.pop();
+    modifyMenu: (state, action) => {
+      state.orderList[action.payload.idx] = action.payload.data;
+    },
+    removeMenu: (state, action) => {
+      state.orderList.splice(action.payload, 1);
     },
   },
 });
 
-export const { addTask, removeTodo } = todoSlice.actions;
+export const { addMenu, modifyMenu, removeMenu } = orderSlice.actions;
 
 export const store = configureStore({
   reducer: {
-    todos: todoSlice.reducer,
+    orders: orderSlice.reducer,
   },
 });
 
