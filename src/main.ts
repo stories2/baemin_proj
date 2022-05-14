@@ -19,14 +19,14 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDsGtjCFm1CQv1u3lrd24eUf0FLrOJiPAA",
-  authDomain: "asdfadsfas.firebaseapp.com",
-  projectId: "asdfadsfas",
-  storageBucket: "asdfadsfas.appspot.com",
-  messagingSenderId: "901281032604",
-  appId: "1:901281032604:web:70bbc4bffb0e215bcf8059",
+  apiKey: "AIzaSyATXZhOPR0GeDk10-J9Yl6K9YWAEI_OqxY",
+  authDomain: "baemin-vue.firebaseapp.com",
+  projectId: "baemin-vue",
+  storageBucket: "baemin-vue.appspot.com",
+  messagingSenderId: "805734936503",
+  appId: "1:805734936503:web:372284efc45c5cf97c8232",
+  measurementId: "G-L40L9QRPF6",
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
