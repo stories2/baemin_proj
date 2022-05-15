@@ -33,8 +33,11 @@ const app = initializeApp(firebaseConfig);
 import { createRedux } from "./storePlugin";
 import { store } from "./store";
 
+import { BootstrapIconsPlugin } from "bootstrap-icons-vue";
+
 createApp(App)
   .use(router)
   .use(BootstrapVue3)
+  .use(BootstrapIconsPlugin)
   .use(createRedux(store))
   .mount("#app");
