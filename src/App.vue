@@ -1,10 +1,10 @@
 <template>
-  <nav>
+  <!-- <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/basket">Basket</router-link> |
     <router-link to="/store">Store</router-link>
-  </nav>
+  </nav> -->
   <b-container class="bv-example-row">
     <router-view />
   </b-container>
