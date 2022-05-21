@@ -9,8 +9,8 @@ import HomeView from "../views/HomeView.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: "main",
+    component: () => import("../views/MainView.vue"),
   },
   {
     path: "/about",
@@ -32,9 +32,9 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/StoreView.vue"),
   },
   {
-    path: "/main",
-    name: "main",
-    component: () => import("../views/MainView.vue"),
+    path: "/home",
+    name: "home",
+    component: HomeView,
   },
 ];
 
