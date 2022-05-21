@@ -31,4 +31,11 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+@font-face {
+  /* https://www.woowahan.com/fonts */
+  /* https://www.woowahan.com/fonts/license */
+  font-family: "BaeminHannaPro";
+  src: local("BaeminHannaPro"), url(./assets/BMHANNAPro.ttf) format("truetype");
+}
 </style>
