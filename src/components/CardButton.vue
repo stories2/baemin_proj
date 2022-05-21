@@ -1,17 +1,20 @@
 <template>
   <div class="card-css">
-    <div class="card-title">배민</div>
-    <pre class="card-descript">
-한 번에 한 집만
-빠르게 배달해요!</pre
-    >
+    <div class="card-title">{{ title }}</div>
+    <pre class="card-descript">{{ msg }}</pre>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
-export default defineComponent({});
+export default defineComponent({
+  name: "CardButton",
+  props: {
+    title: String,
+    msg: String,
+  },
+});
 </script>
 
 <style scoped>
@@ -28,10 +31,13 @@ export default defineComponent({});
 .card-title {
   font-weight: bold;
   font-family: "BaeminHannaPro";
-  font-size: 1.2em;
+  font-size: 1.25em;
 }
 
 .card-descript {
-  max-width: 150px;
+  max-width: 70%;
+  word-break: break-word;
+  white-space: pre-wrap;
+  font-size: 0.8em;
 }
 </style>
