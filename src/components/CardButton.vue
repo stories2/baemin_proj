@@ -26,6 +26,7 @@ export default defineComponent({
   border: 1px solid #f4f4f4;
   text-align: left;
   padding: 15px;
+  cursor: pointer;
 }
 
 .card-title {
@@ -39,5 +40,15 @@ export default defineComponent({
   word-break: break-word;
   white-space: pre-wrap;
   font-size: 0.8em;
+}
+
+@media (min-width: 768px) {
+  .card-title {
+    font-size: 1.4em;
+  }
+
+  .card-descript {
+    font-size: 1em;
+  }
 }
 </style>
