@@ -4,7 +4,9 @@
       <b-col style="text-align: start">
         <BIconBell />
       </b-col>
-      <b-col> 방이동 <BIconArrowDownShort /></b-col>
+      <b-col>
+        <address-selector-btn :address="'방이동'"></address-selector-btn>
+      </b-col>
       <b-col style="text-align: end">
         <BIconGrid />
       </b-col>
@@ -25,8 +27,14 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+import AddressSelectorBtn from "./AddressSelectorBtn.vue";
+
 export default defineComponent({
   name: "TopBar",
+
+  components: {
+    AddressSelectorBtn,
+  },
 });
 </script>
 
