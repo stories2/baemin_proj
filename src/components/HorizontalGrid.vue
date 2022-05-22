@@ -50,7 +50,7 @@ export default defineComponent({
           storeName: "제비 파스타&리조또 강동점",
           score: 5.0,
           deliveryMin: 0,
-          deliveryMax: 1900,
+          deliveryMax: 0,
         },
         {
           imgUrl:
