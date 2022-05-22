@@ -10,8 +10,18 @@
       </tr>
     </table>
     <div>
-      <div>미분당 길동점</div>
-      <div>최소주문 ~</div>
+      <b-row class="title-box">
+        <b-col>미분당 길동점</b-col>
+      </b-row>
+      <b-row>
+        <!-- <b-col>
+          <span style="margin-right: 5px; color: #999">배달팁</span>
+          <span>{{ deliveryMin.toLocaleString() }}원</span>
+          <span v-if="deliveryMax">
+            ~ {{ deliveryMax.toLocaleString() }}원
+          </span>
+        </b-col> -->
+      </b-row>
     </div>
   </div>
 </template>
@@ -54,5 +64,11 @@ table {
 
 div.store-card {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.title-box {
+  padding: 15px;
+  text-align: left;
+  font-weight: bold;
 }
 </style>
