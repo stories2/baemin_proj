@@ -32,8 +32,7 @@ export default defineComponent({
       menuList: [
         {
           title: "1인분",
-          imgUrl:
-            "https://cdn-icons.flaticon.com/png/512/3007/premium/3007084.png?token=exp=1653182935~hmac=d592827b1e65e1d2f521b88e100b8e5d",
+          imgUrl: `${require("@/assets/finger.png")}`,
         },
         {
           title: "돈까스 회 일식",
