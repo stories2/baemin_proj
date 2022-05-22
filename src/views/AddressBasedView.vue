@@ -33,7 +33,7 @@ export default defineComponent({
         {
           title: "1인분",
           imgUrl:
-            "https://cdn-icons.flaticon.com/png/512/3007/premium/3007084.png?token=exp=1653181984~hmac=43b654d04c143e2287abf67396be60c2",
+            "https://cdn-icons.flaticon.com/png/512/3007/premium/3007084.png?token=exp=1653182935~hmac=d592827b1e65e1d2f521b88e100b8e5d",
         },
         {
           title: "돈까스 회 일식",

@@ -20,7 +20,7 @@ export default defineComponent({
 
 <style scoped>
 img {
-  width: 48px;
+  width: 36px;
   margin: 15px;
 }
 div.text {
@@ -29,6 +29,7 @@ div.text {
   font-family: "BaeminHannaPro";
   font-weight: bold;
   width: 100%;
+  font-size: 0.8em;
 }
 div.contains {
   padding: 10px;
@@ -38,6 +39,9 @@ div.contains {
 @media (min-width: 768px) {
   img {
     width: 64px;
+  }
+  div.text {
+    font-size: 1em;
   }
 }
 </style>
