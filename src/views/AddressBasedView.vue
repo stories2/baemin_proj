@@ -3,16 +3,18 @@
     <in-app-top-bar :address="'방이동'"></in-app-top-bar>
     <menu-nav-bar></menu-nav-bar>
     <ads-box></ads-box>
-    <b-row>
-      <b-col>
-        <image-text-button
-          v-for="menu in menuList"
-          :key="menu"
-          :title="menu.title"
-          :imgUrl="menu.imgUrl"
-        ></image-text-button>
-      </b-col>
-    </b-row>
+    <section-card>
+      <b-row>
+        <b-col>
+          <image-text-button
+            v-for="menu in menuList"
+            :key="menu"
+            :title="menu.title"
+            :imgUrl="menu.imgUrl"
+          ></image-text-button>
+        </b-col>
+      </b-row>
+    </section-card>
   </div>
 </template>
 
@@ -21,10 +23,11 @@ import InAppTopBar from "@/components/InAppTopBar.vue";
 import MenuNavBar from "@/components/MenuNavBar.vue";
 import AdsBox from "@/components/AdsBox.vue";
 import ImageTextButton from "@/components/ImageTextButton.vue";
+import SectionCard from "@/components/SectionCard.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  components: { InAppTopBar, MenuNavBar, AdsBox, ImageTextButton },
+  components: { InAppTopBar, MenuNavBar, AdsBox, ImageTextButton, SectionCard },
   name: "AddressBasedView",
 
   data() {
