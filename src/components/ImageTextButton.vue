@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <img :src="imgUrl" />
-    <div>{{ title }}</div>
+  <div class="contains">
+    <img :src="imgUrl" /><br />
+    <div class="text">{{ title }}</div>
   </div>
 </template>
 
@@ -18,4 +18,26 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+img {
+  width: 48px;
+  margin: 15px;
+}
+div.text {
+  display: inline-block;
+  text-align: center;
+  font-family: "BaeminHannaPro";
+  font-weight: bold;
+  width: 100%;
+}
+div.contains {
+  padding: 10px;
+  display: inline-block;
+}
+
+@media (min-width: 768px) {
+  img {
+    width: 64px;
+  }
+}
+</style>
