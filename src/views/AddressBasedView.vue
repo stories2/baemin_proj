@@ -15,6 +15,9 @@
         </b-col>
       </b-row>
     </section-card>
+    <section-card style="margin-top: 15px">
+      <horizontal-grid :title="'배민1에 새로 들어왔어요'"></horizontal-grid>
+    </section-card>
   </div>
 </template>
 
@@ -24,10 +27,18 @@ import MenuNavBar from "@/components/MenuNavBar.vue";
 import AdsBox from "@/components/AdsBox.vue";
 import ImageTextButton from "@/components/ImageTextButton.vue";
 import SectionCard from "@/components/SectionCard.vue";
+import HorizontalGrid from "@/components/HorizontalGrid.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  components: { InAppTopBar, MenuNavBar, AdsBox, ImageTextButton, SectionCard },
+  components: {
+    InAppTopBar,
+    MenuNavBar,
+    AdsBox,
+    ImageTextButton,
+    SectionCard,
+    HorizontalGrid,
+  },
   name: "AddressBasedView",
 
   data() {
