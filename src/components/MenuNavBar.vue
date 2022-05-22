@@ -9,32 +9,12 @@
           padding: 15px 0;
         "
       >
-        <nav-bar-btn :title="'asfads'" :isActive="true"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
-        <nav-bar-btn :title="'asfads'"></nav-bar-btn>
+        <nav-bar-btn
+          v-for="nav in navList"
+          :key="nav"
+          :title="nav"
+          :isActive="activeNav == nav"
+        ></nav-bar-btn>
       </b-col>
     </b-row>
   </div>
@@ -49,6 +29,22 @@ export default defineComponent({
 
   components: {
     NavBarBtn,
+  },
+
+  data() {
+    return {
+      activeNav: "배민1",
+      navList: [
+        "배민1",
+        "배달",
+        "포장",
+        "B마트",
+        "배민스토어",
+        "쇼핑라이브",
+        "선물하기",
+        "전국별미",
+      ],
+    };
   },
 });
 </script>
