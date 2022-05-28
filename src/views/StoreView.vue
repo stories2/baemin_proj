@@ -44,6 +44,16 @@
         </b-col>
       </b-row>
     </section-card>
+
+    <section-card>
+      <b-row>
+        <b-col>
+          <h3>메인 메뉴</h3>
+        </b-col>
+      </b-row>
+    </section-card>
+
+    <floating-btn></floating-btn>
   </div>
 </template>
 
@@ -56,6 +66,7 @@ import AdsBox from "@/components/AdsBox.vue";
 import InAppTopBar from "@/components/InAppTopBar.vue";
 import SectionCard from "@/components/SectionCard.vue";
 import FoodListItem from "@/components/FoodListItem.vue";
+import FloatingBtn from "@/components/FloatingBtn.vue";
 
 export default defineComponent({
   components: {
@@ -63,6 +74,7 @@ export default defineComponent({
     AdsBox,
     SectionCard,
     FoodListItem,
+    FloatingBtn,
   },
   data() {
     return {
