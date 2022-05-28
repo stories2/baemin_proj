@@ -1,6 +1,7 @@
 <template>
   <b-row>
     <b-col class="ads-img">
+      <slot></slot>
       <div class="ads-text">11 / 13</div>
     </b-col>
   </b-row>

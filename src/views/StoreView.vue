@@ -1,20 +1,35 @@
 <template>
   <div>
+    <ads-box>
+      <in-app-top-bar :color="'white'"></in-app-top-bar>
+    </ads-box>
     <b-row>
-      <b-col>매장 정보 {{ orders.orderList.length }}</b-col>
+      <b-col>배영호의 묵은지 김치찜 강동점</b-col>
+    </b-row>
+    <b-row>
+      <b-col><BIconStarFill /> 5.0</b-col>
+    </b-row>
+    <b-row>
+      <b-col>최소주문 금액</b-col>
+      <b-col>14,000원</b-col>
+    </b-row>
+    <b-row>
+      <b-col>배달 팁</b-col>
+      <b-col>14,000원</b-col>
+    </b-row>
+    <b-row>
+      <b-col>운영 상태</b-col>
+      <b-col>14,000원</b-col>
     </b-row>
 
-    <b-row>
-      <b-col>
-        <b-button @click="onMenuClicked('참치 마요')">참치 마요</b-button>
-      </b-col>
-      <b-col>
-        <b-button @click="onMenuClicked('라멘')">라멘</b-button>
-      </b-col>
-      <b-col>
-        <b-button @click="onMenuClicked('햄버거')">햄버거</b-button>
-      </b-col>
-    </b-row>
+    <hr />
+    <section-card>
+      <b-row>
+        <b-col>
+          <h3>인기 메뉴</h3>
+        </b-col>
+      </b-row>
+    </section-card>
   </div>
 </template>
 
@@ -23,8 +38,16 @@ import { OrderMenuModel } from "@/interface/order.model";
 import { addMenu } from "@/store";
 import { defineComponent } from "vue";
 import { useDispath, useSelector } from "../helpers";
+import AdsBox from "@/components/AdsBox.vue";
+import InAppTopBar from "@/components/InAppTopBar.vue";
+import SectionCard from "@/components/SectionCard.vue";
 
 export default defineComponent({
+  components: {
+    InAppTopBar,
+    AdsBox,
+    SectionCard,
+  },
   data() {
     return {
       dispatch: useDispath(),
