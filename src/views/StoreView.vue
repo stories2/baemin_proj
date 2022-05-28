@@ -29,6 +29,20 @@
           <h3>인기 메뉴</h3>
         </b-col>
       </b-row>
+      <b-row>
+        <b-col cols="12" md="6" lg="6" xl="4" style="margin-bottom: 15px">
+          <food-list-item></food-list-item>
+        </b-col>
+        <b-col cols="12" md="6" lg="6" xl="4" style="margin-bottom: 15px">
+          <food-list-item></food-list-item>
+        </b-col>
+        <b-col cols="12" md="6" lg="6" xl="4" style="margin-bottom: 15px">
+          <food-list-item></food-list-item>
+        </b-col>
+        <b-col cols="12" md="6" lg="6" xl="4" style="margin-bottom: 15px">
+          <food-list-item></food-list-item>
+        </b-col>
+      </b-row>
     </section-card>
   </div>
 </template>
@@ -41,12 +55,14 @@ import { useDispath, useSelector } from "../helpers";
 import AdsBox from "@/components/AdsBox.vue";
 import InAppTopBar from "@/components/InAppTopBar.vue";
 import SectionCard from "@/components/SectionCard.vue";
+import FoodListItem from "@/components/FoodListItem.vue";
 
 export default defineComponent({
   components: {
     InAppTopBar,
     AdsBox,
     SectionCard,
+    FoodListItem,
   },
   data() {
     return {
