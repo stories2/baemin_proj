@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-bottom: 15px">
     <b-row style="margin-bottom: 15px">
       <b-col>
         <div>치즈카츠(첫주문추천메뉴)</div>
