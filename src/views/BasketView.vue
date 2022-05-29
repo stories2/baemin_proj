@@ -16,7 +16,11 @@
       <hr />
       <b-row>
         <b-col cols="12" lg="6" v-for="order in orderListTest" :key="order">
-          <basket-item :cost="order.cost"></basket-item>
+          <basket-item
+            :id="order.id"
+            :cost="order.cost"
+            v-on:on-delete="onItemDelete"
+          ></basket-item>
         </b-col>
       </b-row>
       <hr />
@@ -86,15 +90,19 @@ export default defineComponent({
       orderList: useSelector((state) => state.orders).value.orderList,
       orderListTest: [
         {
+          id: "test1",
           cost: 12000,
         },
         {
+          id: "test2",
           cost: 12000,
         },
         {
+          id: "test3",
           cost: 12000,
         },
         {
+          id: "test4",
           cost: 12000,
         },
       ],
@@ -116,6 +124,10 @@ export default defineComponent({
           cost: this.paymentCost,
         })
       );
+    },
+
+    onItemDelete(id: string) {
+      console.log("del", id);
     },
   },
 

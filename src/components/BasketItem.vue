@@ -5,7 +5,7 @@
         <div>치즈카츠(첫주문추천메뉴)</div>
       </b-col>
       <b-col style="text-align: right">
-        <BIconXLg style="cursor: pointer" />
+        <BIconXLg style="cursor: pointer" @click="onDeleteClicked()" />
       </b-col>
     </b-row>
     <b-row>
@@ -33,7 +33,14 @@ export default defineComponent({
   name: "BasketItem",
 
   props: {
+    id: String,
     cost: Number,
+  },
+
+  methods: {
+    onDeleteClicked() {
+      this.$emit("on-delete", this.id);
+    },
   },
 });
 </script>
