@@ -128,6 +128,10 @@ export default defineComponent({
 
     onItemDelete(id: string) {
       console.log("del", id);
+      const orderItem = this.orderListTest.find((item) => item.id == id);
+      if (orderItem) {
+        this.orderListTest.splice(this.orderListTest.indexOf(orderItem), 1);
+      }
     },
   },
 

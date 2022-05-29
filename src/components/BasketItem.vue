@@ -2,7 +2,7 @@
   <div style="margin-bottom: 15px">
     <b-row style="margin-bottom: 15px">
       <b-col>
-        <div>치즈카츠(첫주문추천메뉴)</div>
+        <div>{{ id }}</div>
       </b-col>
       <b-col style="text-align: right">
         <BIconXLg style="cursor: pointer" @click="onDeleteClicked()" />
