@@ -10,6 +10,26 @@
   </b-container>
 </template>
 
+<script lang="ts">
+import { defineComponent } from "vue";
+import { initPayment } from "@/store";
+import { useDispath } from "./helpers";
+
+export default defineComponent({
+  name: "App",
+
+  data() {
+    return {
+      dispatch: useDispath(),
+    };
+  },
+
+  mounted() {
+    this.dispatch(initPayment({}));
+  },
+});
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

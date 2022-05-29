@@ -25,5 +25,6 @@ div {
   border-radius: 36px;
   font-size: 30px;
   box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  cursor: pointer;
 }
 </style>

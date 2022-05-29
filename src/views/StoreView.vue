@@ -53,13 +53,13 @@
       </b-row>
     </section-card>
 
-    <floating-btn></floating-btn>
+    <floating-btn @click="test()"></floating-btn>
   </div>
 </template>
 
 <script lang="ts">
 import { OrderMenuModel } from "@/interface/order.model";
-import { addMenu } from "@/store";
+import { addMenu, requestPayment } from "@/store";
 import { defineComponent } from "vue";
 import { useDispath, useSelector } from "../helpers";
 import AdsBox from "@/components/AdsBox.vue";
@@ -93,6 +93,10 @@ export default defineComponent({
           name: menuName,
         } as OrderMenuModel)
       );
+    },
+
+    test() {
+      this.dispatch(requestPayment({}));
     },
   },
 });
