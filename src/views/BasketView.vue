@@ -42,10 +42,10 @@
 
     <section-card>
       <b-row>
-        <b-col>
+        <b-col cols="12" md="6">
           <pay-col :text="'총 주문금액'" :cost="12000"></pay-col>
         </b-col>
-        <b-col>
+        <b-col cols="12" md="6">
           <pay-col :text="'배달팁'" :cost="2900"></pay-col>
         </b-col>
       </b-row>
