@@ -1,6 +1,6 @@
 <template>
   <div v-bind:style="{ color: color || 'white' }">
-    {{ address }} <BIconArrowDownShort />
+    {{ address }} <BIconArrowDownShort v-if="address !== '장바구니'" />
   </div>
 </template>
 
