@@ -96,7 +96,11 @@ export default defineComponent({
     },
 
     test() {
-      this.dispatch(requestPayment({}));
+      this.dispatch(
+        requestPayment({
+          cost: 14900,
+        })
+      );
     },
   },
 });

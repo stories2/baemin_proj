@@ -15,23 +15,8 @@
       </b-row>
       <hr />
       <b-row>
-        <b-col cols="12" lg="6">
-          <basket-item></basket-item>
-        </b-col>
-        <b-col cols="12" lg="6">
-          <basket-item></basket-item>
-        </b-col>
-        <b-col cols="12" lg="6">
-          <basket-item></basket-item>
-        </b-col>
-        <b-col cols="12" lg="6">
-          <basket-item></basket-item>
-        </b-col>
-        <b-col cols="12" lg="6">
-          <basket-item></basket-item>
-        </b-col>
-        <b-col cols="12" lg="6">
-          <basket-item></basket-item>
+        <b-col cols="12" lg="6" v-for="order in orderListTest" :key="order">
+          <basket-item :cost="order.cost"></basket-item>
         </b-col>
       </b-row>
       <hr />
@@ -43,10 +28,10 @@
     <section-card>
       <b-row>
         <b-col cols="12" md="6">
-          <pay-col :text="'총 주문금액'" :cost="12000"></pay-col>
+          <pay-col :text="'총 주문금액'" :cost="sumCost"></pay-col>
         </b-col>
         <b-col cols="12" md="6">
-          <pay-col :text="'배달팁'" :cost="2900"></pay-col>
+          <pay-col :text="'배달팁'" :cost="deliveryTip"></pay-col>
         </b-col>
       </b-row>
       <hr />
@@ -54,7 +39,7 @@
         <b-col>
           <pay-col
             :text="'결제예정금액'"
-            :cost="14900"
+            :cost="paymentCost"
             :isBold="true"
           ></pay-col>
         </b-col>
@@ -67,7 +52,9 @@
 
     <b-row align-h="end">
       <b-col style="text-align: right" cols="12" md="6" lg="3">
-        <b-button class="payment-btn">14900원 배달 주문하기</b-button>
+        <b-button class="payment-btn" @click="startPayment()"
+          >{{ (paymentCost || 0).toLocaleString() }}원 배달 주문하기</b-button
+        >
       </b-col>
     </b-row>
 
@@ -79,6 +66,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { requestPayment } from "@/store";
 import { useDispath, useSelector } from "../helpers";
 import InAppTopBar from "@/components/InAppTopBar.vue";
 import SectionCard from "@/components/SectionCard.vue";
@@ -94,7 +82,23 @@ export default defineComponent({
   },
   data() {
     return {
+      dispatch: useDispath(),
       orderList: useSelector((state) => state.orders).value.orderList,
+      orderListTest: [
+        {
+          cost: 12000,
+        },
+        {
+          cost: 12000,
+        },
+        {
+          cost: 12000,
+        },
+        {
+          cost: 12000,
+        },
+      ],
+      deliveryTip: 2900,
     };
   },
 
@@ -103,6 +107,25 @@ export default defineComponent({
       "test",
       useSelector((state) => state.orders)
     );
+  },
+
+  methods: {
+    startPayment() {
+      this.dispatch(
+        requestPayment({
+          cost: this.paymentCost,
+        })
+      );
+    },
+  },
+
+  computed: {
+    sumCost(): number {
+      return this.orderListTest.reduce((a, b) => a + b.cost, 0);
+    },
+    paymentCost(): number {
+      return this.sumCost + this.deliveryTip;
+    },
   },
 });
 </script>

@@ -14,10 +14,12 @@
       </b-col>
       <b-col>
         <b-row>
-          <b-col>가격: 단품 (13,000원)</b-col>
+          <b-col>가격: 단품 ({{ (cost || 0).toLocaleString() }}원)</b-col>
         </b-row>
         <b-row>
-          <b-col style="font-weight: bold">13,000원</b-col>
+          <b-col style="font-weight: bold"
+            >{{ (cost || 0).toLocaleString() }}원</b-col
+          >
         </b-row>
       </b-col>
     </b-row>
@@ -29,6 +31,10 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "BasketItem",
+
+  props: {
+    cost: Number,
+  },
 });
 </script>
 

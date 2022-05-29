@@ -18,16 +18,16 @@ export const orderSlice = createSlice({
     initPayment: (state: { IMP: any }, action: any) => {
       state.IMP.init("imp92079596");
     },
-    requestPayment: (state: any, action: any) => {
+    requestPayment: (state: any, action: { payload: { cost: number } }) => {
       console.log("req pay", state.IMP);
       state.IMP.request_pay(
         {
           // param
           pg: "html5_inicis",
           pay_method: "card",
-          merchant_uid: "ORD20180131-0000011",
+          merchant_uid: "ORD20180131-0000014",
           name: "노르웨이 회전 의자",
-          amount: 1004,
+          amount: action.payload.cost,
           buyer_email: "gildong@gmail.com",
           buyer_name: "홍길동",
           buyer_tel: "010-4242-4242",
