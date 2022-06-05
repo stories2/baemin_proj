@@ -2,7 +2,7 @@
   <div style="margin-bottom: 15px">
     <b-row style="margin-bottom: 15px">
       <b-col>
-        <div>{{ id }}</div>
+        <div>{{ name }}</div>
       </b-col>
       <b-col style="text-align: right">
         <BIconXLg style="cursor: pointer" @click="onDeleteClicked()" />
@@ -34,6 +34,7 @@ export default defineComponent({
 
   props: {
     id: String,
+    name: String,
     cost: Number,
   },
 

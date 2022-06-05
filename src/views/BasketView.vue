@@ -1,9 +1,9 @@
 <template>
   <div>
     <in-app-top-bar :address="'장바구니'"></in-app-top-bar>
-    <!-- <div>장바구니 {{ orderList.length }}</div>
+    <!-- <div>장바구니 {{ orders.orderList.length }}</div>
     <ul>
-      <li v-for="order in orderList" v-bind:key="order.name">
+      <li v-for="order in orders.orderList" v-bind:key="order.name">
         {{ order.name }}
       </li>
     </ul> -->
@@ -15,9 +15,10 @@
       </b-row>
       <hr />
       <b-row>
-        <b-col cols="12" lg="6" v-for="order in orderListTest" :key="order">
+        <b-col cols="12" lg="6" v-for="order in orders.orderList" :key="order">
           <basket-item
-            :id="order.id"
+            :id="order.guid"
+            :name="order.name"
             :cost="order.cost"
             v-on:on-delete="onItemDelete"
           ></basket-item>
@@ -56,7 +57,10 @@
 
     <b-row align-h="end">
       <b-col style="text-align: right" cols="12" md="6" lg="3">
-        <b-button class="payment-btn" @click="startPayment()"
+        <b-button
+          :disabled="orders.orderList.length <= 0"
+          class="payment-btn"
+          @click="startPayment()"
           >{{ (paymentCost || 0).toLocaleString() }}원 배달 주문하기</b-button
         >
       </b-col>
@@ -70,7 +74,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { requestPayment } from "@/store";
+import { removeMenu, requestPayment } from "@/store";
 import { useDispath, useSelector } from "../helpers";
 import InAppTopBar from "@/components/InAppTopBar.vue";
 import SectionCard from "@/components/SectionCard.vue";
@@ -87,6 +91,7 @@ export default defineComponent({
   data() {
     return {
       dispatch: useDispath(),
+      orders: useSelector((state) => state.orders),
       orderList: useSelector((state) => state.orders).value.orderList,
       orderListTest: [
         {
@@ -128,16 +133,20 @@ export default defineComponent({
 
     onItemDelete(id: string) {
       console.log("del", id);
-      const orderItem = this.orderListTest.find((item) => item.id == id);
-      if (orderItem) {
-        this.orderListTest.splice(this.orderListTest.indexOf(orderItem), 1);
-      }
+      this.dispatch(
+        removeMenu({
+          id,
+        })
+      );
     },
   },
 
   computed: {
     sumCost(): number {
-      return this.orderListTest.reduce((a, b) => a + b.cost, 0);
+      return this.orders.orderList.reduce((a, b) => a + b.cost, 0);
+    },
+    orderListRedux(): any {
+      return this.orderList;
     },
     paymentCost(): number {
       return this.sumCost + this.deliveryTip;

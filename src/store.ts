@@ -8,6 +8,27 @@ import { recommendStoreList, storeList } from "./db";
 // const IMP = (window as any).IMP;
 // console.log("test", IMP);
 // IMP.init("imp92079596");
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return (
+    s4() +
+    s4() +
+    "-" +
+    s4() +
+    "-" +
+    s4() +
+    "-" +
+    s4() +
+    "-" +
+    s4() +
+    s4() +
+    s4()
+  );
+}
 
 export const orderSlice = createSlice({
   name: "orders",
@@ -49,7 +70,7 @@ export const orderSlice = createSlice({
     },
     addMenu: (state: { orderList: any[] }, action: { payload: any }) => {
       console.log("addMenu", action);
-      state.orderList.push(action.payload);
+      state.orderList.push({ ...action.payload, guid: guid() });
       console.log("order", state.orderList, state.orderList.length);
     },
     modifyMenu: (
@@ -58,8 +79,20 @@ export const orderSlice = createSlice({
     ) => {
       state.orderList[action.payload.idx] = action.payload.data;
     },
-    removeMenu: (state: { orderList: any[] }, action: { payload: any }) => {
-      state.orderList.splice(action.payload, 1);
+    removeMenu: (state: { orderList: any[] }, action: any) => {
+      console.log("del idx", action.payload.id);
+      const orderItem = state.orderList.find(
+        (item: any) => item.guid == action.payload.id
+      );
+      if (orderItem) {
+        console.log(
+          "exist",
+          JSON.stringify(orderItem),
+          state.orderList.indexOf(orderItem)
+        );
+        const idx = state.orderList.indexOf(orderItem);
+        state.orderList.splice(idx, 1);
+      }
     },
   },
 });
