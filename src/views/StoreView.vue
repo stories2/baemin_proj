@@ -30,17 +30,20 @@
         </b-col>
       </b-row>
       <b-row>
-        <b-col cols="12" md="6" lg="6" xl="4" style="margin-bottom: 15px">
-          <food-list-item></food-list-item>
-        </b-col>
-        <b-col cols="12" md="6" lg="6" xl="4" style="margin-bottom: 15px">
-          <food-list-item></food-list-item>
-        </b-col>
-        <b-col cols="12" md="6" lg="6" xl="4" style="margin-bottom: 15px">
-          <food-list-item></food-list-item>
-        </b-col>
-        <b-col cols="12" md="6" lg="6" xl="4" style="margin-bottom: 15px">
-          <food-list-item></food-list-item>
+        <b-col
+          v-for="menu in menuList"
+          :key="menu"
+          cols="12"
+          md="6"
+          lg="6"
+          xl="4"
+          style="margin-bottom: 15px"
+        >
+          <food-list-item
+            :name="menu.name"
+            :cost="menu.cost"
+            @click="onMenuClicked(menu.name, menu.cost)"
+          ></food-list-item>
         </b-col>
       </b-row>
     </section-card>
@@ -80,6 +83,17 @@ export default defineComponent({
     return {
       dispatch: useDispath(),
       orders: useSelector((state) => state.orders),
+
+      menuList: [
+        {
+          name: "김치찜",
+          cost: 24000,
+        },
+        {
+          name: "계란찜",
+          cost: 5000,
+        },
+      ],
     };
   },
   mounted() {
@@ -87,10 +101,12 @@ export default defineComponent({
   },
 
   methods: {
-    onMenuClicked(menuName: string) {
+    onMenuClicked(menuName: string, cost: number) {
+      console.log("asdf", menuName, cost);
       this.dispatch(
         addMenu({
           name: menuName,
+          cost,
         } as OrderMenuModel)
       );
     },

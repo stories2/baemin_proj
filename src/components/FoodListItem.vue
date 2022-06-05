@@ -4,14 +4,14 @@
       <b-col cols="8">
         <b-row>
           <b-col>
-            <h4>1인 돼지 묵은지 김치찜</h4>
+            <h4>{{ name }}</h4>
           </b-col>
         </b-row>
         <b-row>
           <b-col>sdaklfjasdf</b-col>
         </b-row>
         <b-row>
-          <b-col>2인: 24,000원</b-col>
+          <b-col>{{ cost }}원</b-col>
         </b-row>
       </b-col>
       <b-col cols="4">
@@ -35,6 +35,11 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "FoodListItem",
+
+  props: {
+    name: String,
+    cost: String,
+  },
 });
 </script>
 
