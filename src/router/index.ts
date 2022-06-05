@@ -33,7 +33,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/BasketView.vue"),
   },
   {
-    path: "/store",
+    path: "/store/:storeIdx",
     name: "store",
     component: () => import("../views/StoreView.vue"),
   },

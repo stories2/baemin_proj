@@ -13,6 +13,7 @@
           :img2="store.img2"
           :img3="store.img3"
           :name="store.name"
+          @click="onStoreCardClicked(store)"
         ></store-big-card>
       </b-col>
     </b-row>
@@ -33,19 +34,23 @@ export default defineComponent({
     storeList: Array,
   },
 
+  methods: {
+    onStoreCardClicked(store: any) {
+      this.$emit("store-card-clicked", store);
+    },
+  },
+
   computed: {
     storeListConverted() {
-      console.log(this.storeList);
-      const test = (this.storeList || []).map((store: any) => {
+      return (this.storeList || []).map((store: any) => {
         return {
           img1: store.imgList[0],
           img2: store.imgList[1],
           img3: store.imgList[2],
           name: store.name,
+          idx: store.idx,
         };
       });
-      console.log("test", test);
-      return test;
     },
   },
 });

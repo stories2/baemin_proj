@@ -16,6 +16,7 @@ export const orderSlice = createSlice({
     IMP: (window as any).IMP,
     recommendStoreList: recommendStoreList,
     storeList: storeList,
+    focusedStore: {},
   },
   reducers: {
     initPayment: (state: { IMP: any }, action: any) => {
@@ -47,6 +48,38 @@ export const orderSlice = createSlice({
         }
       );
     },
+    selectStoreInfo: (
+      state: {
+        focusedStore: any;
+        recommendStoreList: any[];
+        storeList: any[];
+      },
+      action: { payload: { idx: any } }
+    ) => {
+      // https://stackoverflow.com/a/68921009
+      console.log(
+        "state",
+        state.recommendStoreList,
+        JSON.parse(JSON.stringify(state.recommendStoreList))
+      );
+      const test =
+        state.recommendStoreList.find(
+          (store) => store.idx === action.payload.idx
+        ) || state.storeList.find((store) => store.idx === action.payload.idx);
+      console.log("test", JSON.parse(JSON.stringify(test)), action.payload.idx);
+      // console.log(
+      //   "asdf",
+      //   state.recommendStoreList.find(
+      //     (store) => store.idx === action.payload.idx
+      //   )
+      // );
+      // console.log(
+      //   "asdf",
+      //   state.storeList.find((store) => store.idx === action.payload.idx)
+      // );
+      state.focusedStore = { ...test };
+      return state.focusedStore;
+    },
     addMenu: (state: { orderList: any[] }, action: { payload: any }) => {
       console.log("addMenu", action);
       state.orderList.push(action.payload);
@@ -64,8 +97,14 @@ export const orderSlice = createSlice({
   },
 });
 
-export const { initPayment, requestPayment, addMenu, modifyMenu, removeMenu } =
-  orderSlice.actions;
+export const {
+  initPayment,
+  requestPayment,
+  addMenu,
+  modifyMenu,
+  removeMenu,
+  selectStoreInfo,
+} = orderSlice.actions;
 
 export const store = configureStore({
   reducer: {
