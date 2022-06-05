@@ -11,7 +11,11 @@
             :lg="card.lg"
             :xl="card.xl"
           >
-            <CardButton :title="card.title" :msg="card.msg"></CardButton>
+            <CardButton
+              :title="card.title"
+              :msg="card.msg"
+              @click="$router.push(card.url || '/')"
+            ></CardButton>
           </b-col>
         </template>
       </b-row>
@@ -44,6 +48,7 @@ export default defineComponent({
           md: 6,
           lg: 6,
           xl: 3,
+          url: "/address-based",
         },
         {
           title: "배달",

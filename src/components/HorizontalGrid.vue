@@ -36,6 +36,7 @@ export default defineComponent({
   name: "HorizontalGrid",
   props: {
     title: String,
+    storeList: Array,
   },
   components: {
     GridItem,
@@ -43,48 +44,48 @@ export default defineComponent({
 
   data() {
     return {
-      storeList: [
-        {
-          imgUrl:
-            "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
-          storeName: "제비 파스타&리조또 강동점",
-          score: 5.0,
-          deliveryMin: 0,
-          deliveryMax: 0,
-        },
-        {
-          imgUrl:
-            "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
-          storeName: "제비 파스타&리조또 강동점",
-          score: 5.0,
-          deliveryMin: 0,
-          deliveryMax: 1900,
-        },
-        {
-          imgUrl:
-            "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
-          storeName: "제비 파스타&리조또 강동점",
-          score: 5.0,
-          deliveryMin: 0,
-          deliveryMax: 1900,
-        },
-        {
-          imgUrl:
-            "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
-          storeName: "제비 파스타&리조또 강동점",
-          score: 5.0,
-          deliveryMin: 0,
-          deliveryMax: 1900,
-        },
-        {
-          imgUrl:
-            "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
-          storeName: "제비 파스타&리조또 강동점",
-          score: 5.0,
-          deliveryMin: 0,
-          deliveryMax: 1900,
-        },
-      ],
+      // storeList: [
+      //   {
+      //     imgUrl:
+      //       "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
+      //     storeName: "제비 파스타&리조또 강동점",
+      //     score: 5.0,
+      //     deliveryMin: 0,
+      //     deliveryMax: 0,
+      //   },
+      //   {
+      //     imgUrl:
+      //       "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
+      //     storeName: "제비 파스타&리조또 강동점",
+      //     score: 5.0,
+      //     deliveryMin: 0,
+      //     deliveryMax: 1900,
+      //   },
+      //   {
+      //     imgUrl:
+      //       "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
+      //     storeName: "제비 파스타&리조또 강동점",
+      //     score: 5.0,
+      //     deliveryMin: 0,
+      //     deliveryMax: 1900,
+      //   },
+      //   {
+      //     imgUrl:
+      //       "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
+      //     storeName: "제비 파스타&리조또 강동점",
+      //     score: 5.0,
+      //     deliveryMin: 0,
+      //     deliveryMax: 1900,
+      //   },
+      //   {
+      //     imgUrl:
+      //       "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
+      //     storeName: "제비 파스타&리조또 강동점",
+      //     score: 5.0,
+      //     deliveryMin: 0,
+      //     deliveryMax: 1900,
+      //   },
+      // ],
     };
   },
 });

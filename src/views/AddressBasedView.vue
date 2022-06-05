@@ -16,7 +16,10 @@
       </b-row>
     </section-card>
     <section-card style="margin-top: 15px">
-      <horizontal-grid :title="'배민1에 새로 들어왔어요'"></horizontal-grid>
+      <horizontal-grid
+        :title="'배민1에 새로 들어왔어요'"
+        :storeList="recommendStoreList"
+      ></horizontal-grid>
     </section-card>
     <section-card>
       <store-big-card-grid></store-big-card-grid>
@@ -33,6 +36,7 @@ import SectionCard from "@/components/SectionCard.vue";
 import HorizontalGrid from "@/components/HorizontalGrid.vue";
 import StoreBigCardGrid from "@/components/StoreBigCardGrid.vue";
 import { defineComponent } from "vue";
+import { useDispath, useSelector } from "../helpers";
 
 export default defineComponent({
   components: {
@@ -48,6 +52,8 @@ export default defineComponent({
 
   data() {
     return {
+      recommendStoreList: useSelector((state) => state.orders).value
+        .recommendStoreList,
       menuList: [
         {
           title: "1인분",

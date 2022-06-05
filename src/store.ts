@@ -1,5 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { OrderMenuModel } from "./interface/order.model";
+import { recommendStoreList, storeList } from "./db";
 
 // https://velog.io/@gsh723/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC-Redux-Toolkit-%EC%9D%B4%EB%9E%80
 // action + reduce = slice
@@ -13,6 +14,8 @@ export const orderSlice = createSlice({
   initialState: {
     orderList: [] as OrderMenuModel[],
     IMP: (window as any).IMP,
+    recommendStoreList: recommendStoreList,
+    storeList: storeList,
   },
   reducers: {
     initPayment: (state: { IMP: any }, action: any) => {
