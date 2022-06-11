@@ -26,6 +26,8 @@ const firebaseConfig = {
   messagingSenderId: "805734936503",
   appId: "1:805734936503:web:372284efc45c5cf97c8232",
   measurementId: "G-L40L9QRPF6",
+  databaseURL:
+    "https://baemin-vue-default-rtdb.asia-southeast1.firebasedatabase.app",
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
