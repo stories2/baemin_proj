@@ -61,5 +61,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stories2/baemin_proj.git"
+  },
+  "eslintConfig": {
+    "globals": {
+      "kakao": true
+    }
   }
 }
