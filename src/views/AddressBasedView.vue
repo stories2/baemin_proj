@@ -93,38 +93,35 @@ export default defineComponent({
         },
         {
           title: "분식",
-          imgUrl:
-            "https://cdn-icons.flaticon.com/png/512/2010/premium/2010581.png?token=exp=1653182703~hmac=ee26593b455e9cdaf3075be0351c558a",
+          imgUrl: `${require("@/assets/tokbokki.png")}`,
         },
         {
           title: "찜 탕 찌개",
-          imgUrl:
-            "https://cdn-icons.flaticon.com/png/512/2388/premium/2388080.png?token=exp=1653182730~hmac=f8dd4eae36ecc7bb6542dacc9bf0237d",
+          imgUrl: `${require("@/assets/hot-soup.png")}`,
         },
         {
           title: "피자",
-          imgUrl: "https://cdn-icons-png.flaticon.com/512/3595/3595458.png",
+          imgUrl: `${require("@/assets/pizza.png")}`,
         },
         {
           title: "양식",
-          imgUrl:
-            "https://cdn-icons.flaticon.com/png/512/4465/premium/4465494.png?token=exp=1653182765~hmac=c431a840fca496bf955e90f54f60d684",
+          imgUrl: `${require("@/assets/spaghetti.png")}`,
         },
         {
           title: "고기 구이",
-          imgUrl: "https://cdn-icons-png.flaticon.com/512/1391/1391399.png",
+          imgUrl: `${require("@/assets/chop.png")}`,
         },
         {
           title: "족발 보쌈",
-          imgUrl: "https://cdn-icons-png.flaticon.com/512/3480/3480720.png",
+          imgUrl: `${require("@/assets/steak.png")}`,
         },
         {
           title: "아시안",
-          imgUrl: "https://cdn-icons-png.flaticon.com/512/3946/3946515.png",
+          imgUrl: `${require("@/assets/ramen.png")}`,
         },
         {
           title: "버거",
-          imgUrl: "https://cdn-icons-png.flaticon.com/512/3075/3075977.png",
+          imgUrl: `${require("@/assets/hamburger.png")}`,
         },
       ],
     };
