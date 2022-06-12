@@ -45,11 +45,11 @@ export class Permission {
     });
   }
 
-  getCurrentLocation(): Promise<GeolocationPosition> {
-    return new Promise<GeolocationPosition>((resolve, reject) => {
+  getCurrentLocation(): Promise<GeolocationCoordinates> {
+    return new Promise<GeolocationCoordinates>((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
-          resolve(pos);
+          resolve(pos.coords);
         },
         (err) => {
           reject(err);
