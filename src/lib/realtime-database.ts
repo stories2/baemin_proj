@@ -30,7 +30,7 @@ export class DatabaseDao {
     return get(
       query(
         ref(this.realtimeDB, "DATA"),
-        orderByChild("cgg_code"),
+        orderByChild("cgg_code_nm"),
         equalTo(addrCode)
       )
     )

@@ -17,6 +17,7 @@
 import { defineComponent } from "vue";
 import AddressModal from "./AddressModal.vue";
 import { KakaoMap } from "../lib/kakaomap";
+import { DatabaseDao } from "../lib/realtime-database";
 
 export default defineComponent({
   name: "AddressSelectBtn",
@@ -45,6 +46,12 @@ export default defineComponent({
 
     onAddressLoaded(addressInfo: any) {
       console.log("addressInfo", addressInfo);
+      const dao = new DatabaseDao();
+      dao
+        .getFoodShopFilterByAddress(addressInfo.region_2depth_name)
+        .then((res) => {
+          console.log("test", res);
+        });
       this.addrStr = `${addressInfo.region_1depth_name} ${addressInfo.region_2depth_name} ${addressInfo.region_3depth_name}`;
     },
   },
