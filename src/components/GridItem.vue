@@ -1,5 +1,8 @@
 <template>
-  <div class="grid-item" style="text-align: center; margin-right: 15px">
+  <div
+    class="grid-item"
+    style="text-align: center; margin-right: 15px; cursor: pointer"
+  >
     <img :src="imgUrl" />
     <div style="height: 32px; line-height: 32px">
       <span class="store-name">{{ storeName }}</span>
