@@ -41,7 +41,7 @@ export default defineComponent({
     };
   },
 
-  onMounted() {
+  mounted() {
     this.loadLastLocation();
     this.loadFilteredStoreList(this.region_2depth_name);
   },
@@ -61,6 +61,7 @@ export default defineComponent({
         localStorage.getItem("addressFull") || "서울 송파구 방이동";
       this.region_2depth_name =
         localStorage.getItem("region_2depth_name") || "송파구";
+      console.log("add", this.addrStr, this.region_2depth_name);
     },
 
     loadFilteredStoreList(region_2depth_name: string) {
