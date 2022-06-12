@@ -18,7 +18,7 @@
     <section-card style="margin-top: 15px">
       <horizontal-grid
         :title="'배민1에 새로 들어왔어요'"
-        :storeList="recommendStoreList"
+        :storeList="orders.recommendStoreList"
       ></horizontal-grid>
     </section-card>
     <section-card>
@@ -56,6 +56,7 @@ export default defineComponent({
 
   data() {
     return {
+      orders: useSelector((state) => state.orders),
       recommendStoreList: useSelector((state) => state.orders).value
         .recommendStoreList,
       storeList: useSelector((state) => state.orders).value.storeList,

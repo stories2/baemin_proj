@@ -50,26 +50,38 @@ export const orderSlice = createSlice({
     focusedStore: {},
   },
   reducers: {
-    setStoreList: (
-      state: { storeList: any },
-      action: {
-        payload: { storeList: { upso_nm: string; food_menu: string }[] };
-      }
-    ) => {
-      state.storeList = action.payload.storeList.map(
-        (store: { upso_nm: string; food_menu: string }) => {
-          return {
-            idx: guid(),
-            storeName: store.upso_nm,
-            score: getRandomArbitrary(0, 5),
-            deliveryMin: getRandomInt(0, 5000),
-            deliveryMax: getRandomInt(0, 5000),
-            imgUrl:
-              "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
-            menuList: (store.food_menu || "").split(","),
-          };
-        }
-      );
+    setStoreList: (state: any, action: { payload: { storeListData: any } }) => {
+      console.log("cost", action.payload.storeListData);
+      state.recommendStoreList.length = 0;
+      Object.keys(action.payload.storeListData).forEach((key: string) => {
+        const store = action.payload.storeListData[key];
+        const deliveryMin = getRandomInt(0, 50) * 100;
+        state.recommendStoreList.push({
+          idx: guid(),
+          storeName: store.upso_nm,
+          score: getRandomArbitrary(0, 5).toFixed(2),
+          deliveryMin: deliveryMin,
+          deliveryMax: deliveryMin + getRandomInt(0, 50) * 100,
+          imgUrl:
+            "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
+          menuList: (store.food_menu || "").split(","),
+        });
+      });
+      console.log("len", state.recommendStoreList.length);
+      // state.storeList = action.payload.storeListData.map(
+      //   (store: { upso_nm: string; food_menu: string }) => {
+      //     return {
+      //       idx: guid(),
+      //       storeName: store.upso_nm,
+      //       score: getRandomArbitrary(0, 5),
+      //       deliveryMin: getRandomInt(0, 5000),
+      //       deliveryMax: getRandomInt(0, 5000),
+      //       imgUrl:
+      //         "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
+      //       menuList: (store.food_menu || "").split(","),
+      //     };
+      //   }
+      // );
     },
     initPayment: (state: { IMP: any }, action: any) => {
       state.IMP.init("imp92079596");
