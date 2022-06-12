@@ -18,6 +18,8 @@ import { defineComponent } from "vue";
 import AddressModal from "./AddressModal.vue";
 import { KakaoMap } from "../lib/kakaomap";
 import { DatabaseDao } from "../lib/realtime-database";
+import { useDispath, useSelector } from "../helpers";
+import { setStoreList } from "@/store";
 
 export default defineComponent({
   name: "AddressSelectBtn",
@@ -34,6 +36,7 @@ export default defineComponent({
   data() {
     return {
       addrStr: this.address,
+      dispatch: useDispath(),
     };
   },
 
@@ -49,8 +52,9 @@ export default defineComponent({
       const dao = new DatabaseDao();
       dao
         .getFoodShopFilterByAddress(addressInfo.region_2depth_name)
-        .then((res) => {
-          console.log("test", res);
+        .then((storeList) => {
+          // console.log("test", storeList);
+          setStoreList({ storeList });
         });
       this.addrStr = `${addressInfo.region_1depth_name} ${addressInfo.region_2depth_name} ${addressInfo.region_3depth_name}`;
     },

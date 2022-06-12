@@ -30,6 +30,16 @@ function guid() {
   );
 }
 
+function getRandomArbitrary(min: number, max: number) {
+  return Math.random() * (max - min) + min;
+}
+
+function getRandomInt(min: number, max: number) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
+}
+
 export const orderSlice = createSlice({
   name: "orders",
   initialState: {
@@ -40,6 +50,27 @@ export const orderSlice = createSlice({
     focusedStore: {},
   },
   reducers: {
+    setStoreList: (
+      state: { storeList: any },
+      action: {
+        payload: { storeList: { upso_nm: string; food_menu: string }[] };
+      }
+    ) => {
+      state.storeList = action.payload.storeList.map(
+        (store: { upso_nm: string; food_menu: string }) => {
+          return {
+            idx: guid(),
+            storeName: store.upso_nm,
+            score: getRandomArbitrary(0, 5),
+            deliveryMin: getRandomInt(0, 5000),
+            deliveryMax: getRandomInt(0, 5000),
+            imgUrl:
+              "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
+            menuList: (store.food_menu || "").split(","),
+          };
+        }
+      );
+    },
     initPayment: (state: { IMP: any }, action: any) => {
       state.IMP.init("imp92079596");
     },
@@ -137,6 +168,7 @@ export const {
   modifyMenu,
   removeMenu,
   selectStoreInfo,
+  setStoreList,
 } = orderSlice.actions;
 
 export const store = configureStore({
