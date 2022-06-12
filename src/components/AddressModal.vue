@@ -10,6 +10,7 @@
             <b-form-input
               v-model="address"
               placeholder="지번, 도로명으로 검색"
+              @keydown.enter="submitAddressSearch"
             ></b-form-input>
           </div>
         </div>
@@ -45,6 +46,67 @@ export default defineComponent({
   },
 
   methods: {
+    submitAddressSearch() {
+      let result = {
+        lat: 0,
+        long: 0,
+        address_name: "",
+        main_address_no: "",
+        mountain_yn: "",
+        region_1depth_name: "",
+        region_2depth_name: "",
+        region_3depth_name: "",
+        sub_address_no: "",
+        zip_code: "",
+      };
+      console.log("asdf");
+      (this.kakaoMap as any)
+        .addressSearch(this.address)
+        .then((addrResponse: any) => {
+          console.log("asdf", addrResponse);
+          if (addrResponse.status == "OK" && addrResponse.result.length > 0) {
+            console.log(addrResponse.result[0]);
+            return addrResponse.result[0];
+          } else {
+            throw new Error("Empty response");
+          }
+        })
+        .then((addrInfo: any) => {
+          return (this.kakaoMap as any).coord2RegionCode({
+            lat: addrInfo.y,
+            long: addrInfo.x,
+          });
+        })
+        .then((res: any) => {
+          console.log("res", res);
+          if (res && res.length > 0) {
+            const address = res[0].address;
+            result = {
+              ...result,
+              ...address,
+            };
+            // address_name: "서울 송파구 방이동 208-2"
+            // lat: 37.5095994
+            // long: 127.1240497
+            // main_address_no: "208"
+            // mountain_yn: "N"
+            // region_1depth_name: "서울"
+            // region_2depth_name: "송파구"
+            // region_3depth_name: "방이동"
+            // sub_address_no: "2"
+            // zip_code: ""
+            console.log(result);
+            this.$emit("address-load", result);
+
+            this.address = `${result.region_1depth_name} ${result.region_2depth_name} ${result.region_3depth_name}`;
+          } else {
+            throw new Error("Cannot get user address info");
+          }
+        })
+        .catch((err: any) => {
+          console.error("[AddressModal] [submitAddressSearch] ", err);
+        });
+    },
     showModal() {
       console.log((this.$refs as any).addressModal);
       //   (this.$refs as any).addressModal.show();
