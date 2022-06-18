@@ -22,6 +22,7 @@
           :score="store.score"
           :deliveryMin="store.deliveryMin"
           :deliveryMax="store.deliveryMax"
+          @click="onGridItemClicked(store)"
         ></grid-item>
       </b-col>
     </b-row>
@@ -87,6 +88,13 @@ export default defineComponent({
       //   },
       // ],
     };
+  },
+
+  methods: {
+    onGridItemClicked(store: any) {
+      console.log("store", store);
+      this.$router.push(`/store/${store.idx}`);
+    },
   },
 });
 </script>
