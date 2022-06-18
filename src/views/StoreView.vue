@@ -43,7 +43,7 @@
             :name="menu.name"
             :cost="menu.cost"
             :url="'https://picsum.photos/200/200?_t=' + menu.cost"
-            @click="onMenuClicked(menu.name, menu.cost)"
+            v-on:onClicked="onMenuClicked"
           ></food-list-item>
         </b-col>
       </b-row>
@@ -57,7 +57,15 @@
       </b-row>
     </section-card>
 
-    <floating-btn @click="test()"></floating-btn>
+    <floating-btn ref="floatingBtn" @click="test()"></floating-btn>
+
+    <template v-if="startPoint">
+      <food-list-item-selected-anim
+        :from="startPoint"
+        :to="floatingBtnRect"
+        v-on:transitionend="onTranslateEnd"
+      ></food-list-item-selected-anim>
+    </template>
   </div>
 </template>
 
@@ -71,6 +79,8 @@ import InAppTopBar from "@/components/InAppTopBar.vue";
 import SectionCard from "@/components/SectionCard.vue";
 import FoodListItem from "@/components/FoodListItem.vue";
 import FloatingBtn from "@/components/FloatingBtn.vue";
+import FoodListItemSelectedAnim from "@/components/FoodListItemSelectedAnim.vue";
+import { Rect } from "@popperjs/core";
 
 export default defineComponent({
   components: {
@@ -79,6 +89,7 @@ export default defineComponent({
     SectionCard,
     FoodListItem,
     FloatingBtn,
+    FoodListItemSelectedAnim,
   },
   data() {
     return {
@@ -97,10 +108,12 @@ export default defineComponent({
           cost: 5000,
         },
       ],
+
+      startPoint: null,
     };
   },
   mounted() {
-    console.log("mounted");
+    console.log("mounted", this.floatingBtnRect);
   },
 
   computed: {
@@ -117,11 +130,26 @@ export default defineComponent({
       }
       return foodStore;
     },
+
+    floatingBtnRect(): Rect {
+      const rect = (this.$refs.floatingBtn as any).$el.getBoundingClientRect();
+      return {
+        left: Number(rect.x),
+        top: Number(rect.top),
+        width: Number(rect.width),
+        height: Number(rect.height),
+      } as unknown as Rect;
+    },
   },
 
   methods: {
-    onMenuClicked(menuName: string, cost: number) {
-      console.log("asdf", menuName, cost);
+    onTranslateEnd() {
+      this.startPoint = null;
+    },
+    onMenuClicked(menu: any) {
+      const { name: menuName, cost, el } = menu;
+      console.log("asdf", menuName, cost, el.getBoundingClientRect());
+      this.startPoint = el.getBoundingClientRect();
       this.dispatch(
         addMenu({
           name: menuName,

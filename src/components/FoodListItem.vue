@@ -5,6 +5,7 @@
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
       padding: 15px;
     "
+    @click="onClicked($event)"
   >
     <b-row>
       <b-col cols="7">
@@ -46,6 +47,25 @@ export default defineComponent({
     name: String,
     cost: String,
     url: String,
+  },
+
+  methods: {
+    onClicked(event: any) {
+      console.log("eve", event, this.$el);
+      this.$emit("onClicked", {
+        name: this.name,
+        cost: this.cost,
+        url: this.url,
+        el: this.$el,
+      });
+    },
+  },
+
+  mounted() {
+    this.$el.addEventListener("transitionend", () => {
+      console.log("end");
+      this.$emit("transitionend");
+    });
   },
 });
 </script>
