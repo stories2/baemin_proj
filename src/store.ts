@@ -1,5 +1,5 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { OrderMenuModel } from "./interface/order.model";
+import { FoodMenu, FoodStore, OrderMenuModel } from "./interface/order.model";
 import { recommendStoreList, storeList } from "./db";
 
 // https://velog.io/@gsh723/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC-Redux-Toolkit-%EC%9D%B4%EB%9E%80
@@ -64,8 +64,13 @@ export const orderSlice = createSlice({
           deliveryMax: deliveryMin + getRandomInt(0, 50) * 100,
           imgUrl:
             "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
-          menuList: (store.food_menu || "").split(","),
-        });
+          menuList: (store.food_menu || "").split(",").map((name: string) => {
+            return {
+              name: name || "Untitled",
+              cost: getRandomInt(0, 50) * 100,
+            } as FoodMenu;
+          }),
+        } as FoodStore);
       });
       console.log("len", state.recommendStoreList.length);
       // state.storeList = action.payload.storeListData.map(
