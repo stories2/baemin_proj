@@ -10,6 +10,7 @@
           cursor: pointer;
         "
         v-bind:style="{ color: color }"
+        @click="$router.back()"
       >
         <BIconArrowLeftShort />
       </span>

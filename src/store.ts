@@ -63,7 +63,7 @@ export const orderSlice = createSlice({
           deliveryMin: deliveryMin,
           deliveryMax: deliveryMin + getRandomInt(0, 50) * 100,
           imgUrl:
-            "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
+            "https://picsum.photos/200/200?_t=" + getRandomInt(0, 1000000),
           menuList: (store.food_menu || "").split(",").map((name: string) => {
             return {
               name: name || "Untitled",

@@ -42,6 +42,7 @@
           <food-list-item
             :name="menu.name"
             :cost="menu.cost"
+            :url="'https://picsum.photos/200/200?_t=' + menu.cost"
             @click="onMenuClicked(menu.name, menu.cost)"
           ></food-list-item>
         </b-col>
