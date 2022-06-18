@@ -59,7 +59,7 @@ export const orderSlice = createSlice({
         state.recommendStoreList.push({
           idx: guid(),
           storeName: store.upso_nm,
-          score: getRandomArbitrary(0, 5).toFixed(2),
+          score: Number(getRandomArbitrary(0, 5).toFixed(2)),
           deliveryMin: deliveryMin,
           deliveryMax: deliveryMin + getRandomInt(0, 50) * 100,
           imgUrl:
