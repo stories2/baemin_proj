@@ -4,23 +4,23 @@
       <in-app-top-bar :color="'white'"></in-app-top-bar>
     </ads-box>
     <b-row>
-      <b-col>배영호의 묵은지 김치찜 강동점</b-col>
+      <b-col>{{ foodStore.storeName }}</b-col>
     </b-row>
     <b-row>
-      <b-col><BIconStarFill /> 5.0</b-col>
+      <b-col><BIconStarFill /> {{ foodStore.score }}</b-col>
     </b-row>
     <b-row>
       <b-col>최소주문 금액</b-col>
-      <b-col>14,000원</b-col>
+      <b-col>{{ foodStore.deliveryMin }}원</b-col>
     </b-row>
-    <b-row>
+    <b-row v-if="foodStore.deliveryMax">
       <b-col>배달 팁</b-col>
-      <b-col>14,000원</b-col>
+      <b-col>{{ foodStore.deliveryMax }}원</b-col>
     </b-row>
-    <b-row>
+    <!-- <b-row>
       <b-col>운영 상태</b-col>
       <b-col>14,000원</b-col>
-    </b-row>
+    </b-row> -->
 
     <hr />
     <section-card>
@@ -31,7 +31,7 @@
       </b-row>
       <b-row>
         <b-col
-          v-for="menu in menuList"
+          v-for="menu in foodStore.menuList"
           :key="menu"
           cols="12"
           md="6"
@@ -61,7 +61,7 @@
 </template>
 
 <script lang="ts">
-import { OrderMenuModel } from "@/interface/order.model";
+import { FoodStore, OrderMenuModel } from "@/interface/order.model";
 import { addMenu, requestPayment } from "@/store";
 import { defineComponent } from "vue";
 import { useDispath, useSelector } from "../helpers";
@@ -83,6 +83,8 @@ export default defineComponent({
     return {
       dispatch: useDispath(),
       orders: useSelector((state) => state.orders),
+      recommendStoreList: useSelector((state) => state.orders).value
+        .recommendStoreList,
 
       menuList: [
         {
@@ -98,6 +100,22 @@ export default defineComponent({
   },
   mounted() {
     console.log("mounted");
+  },
+
+  computed: {
+    foodStore(): FoodStore {
+      const storeIdx = this.$route.params.storeIdx;
+      if (!storeIdx) {
+        console.warn(`[StoreView] [foodStore] storeidx is null`);
+        return {} as FoodStore;
+      }
+      const foodStore = this.recommendStoreList.find((i) => i.idx === storeIdx);
+      if (!foodStore) {
+        console.warn(`[StoreView] [foodStore] cannot find foodstore`);
+        return {} as FoodStore;
+      }
+      return foodStore;
+    },
   },
 
   methods: {

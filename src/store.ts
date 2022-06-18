@@ -45,7 +45,7 @@ export const orderSlice = createSlice({
   initialState: {
     orderList: [] as OrderMenuModel[],
     IMP: (window as any).IMP,
-    recommendStoreList: recommendStoreList,
+    recommendStoreList: [] as FoodStore[],
     storeList: storeList,
     focusedStore: {},
   },

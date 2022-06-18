@@ -7,9 +7,9 @@
             <h4>{{ name }}</h4>
           </b-col>
         </b-row>
-        <b-row>
+        <!-- <b-row>
           <b-col>sdaklfjasdf</b-col>
-        </b-row>
+        </b-row> -->
         <b-row>
           <b-col>{{ cost }}원</b-col>
         </b-row>
