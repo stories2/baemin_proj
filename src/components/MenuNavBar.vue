@@ -14,7 +14,7 @@
           :key="nav"
           :title="nav"
           :isActive="activeNav == nav"
-          @click="activeNav = nav"
+          @click="onMenuNavClicked(nav)"
         ></nav-bar-btn>
       </b-col>
     </b-row>
@@ -46,6 +46,13 @@ export default defineComponent({
         "전국별미",
       ],
     };
+  },
+
+  methods: {
+    onMenuNavClicked(nav: string) {
+      this.activeNav = nav;
+      this.$emit("nav-changed", nav);
+    },
   },
 });
 </script>

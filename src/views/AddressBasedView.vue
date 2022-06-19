@@ -1,7 +1,7 @@
 <template>
   <div>
     <in-app-top-bar :address="'방이동'" :url="'/'"></in-app-top-bar>
-    <menu-nav-bar></menu-nav-bar>
+    <menu-nav-bar v-on:nav-changed="onNavChanged"></menu-nav-bar>
     <ads-box></ads-box>
     <section-card>
       <b-row>
@@ -139,6 +139,9 @@ export default defineComponent({
       // console.log(this.dispatch(selectStoreInfo({ idx: storeData.idx })));
       // console.log("focusedStore", this.focusedStore);
       // this.dispatch(setFocusedStore({ storeData }));
+    },
+    onNavChanged(nav: string) {
+      console.log("nav", nav);
     },
   },
 });
