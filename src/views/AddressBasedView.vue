@@ -1,6 +1,6 @@
 <template>
   <div>
-    <in-app-top-bar :address="'방이동'"></in-app-top-bar>
+    <in-app-top-bar :address="'방이동'" :url="'/'"></in-app-top-bar>
     <menu-nav-bar></menu-nav-bar>
     <ads-box></ads-box>
     <section-card>

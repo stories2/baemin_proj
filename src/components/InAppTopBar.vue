@@ -10,7 +10,7 @@
           cursor: pointer;
         "
         v-bind:style="{ color: color }"
-        @click="$router.back()"
+        @click="url ? $router.push(url) : $router.back()"
       >
         <BIconArrowLeftShort />
       </span>
@@ -44,6 +44,7 @@ export default defineComponent({
       type: String,
       default: "black",
     },
+    url: String,
   },
 });
 </script>
