@@ -126,8 +126,19 @@ export default defineComponent({
         return {} as FoodStore;
       }
       const foodStore = this.recommendStoreList.find((i) => i.idx === storeIdx);
+      console.warn(
+        `[StoreView] [foodStore] testing`,
+        storeIdx,
+        this.recommendStoreList.length,
+        this.recommendStoreList.map((i) => i.idx)
+      );
       if (!foodStore) {
-        console.warn(`[StoreView] [foodStore] cannot find foodstore`);
+        console.warn(
+          `[StoreView] [foodStore] cannot find foodstore`,
+          storeIdx,
+          this.recommendStoreList.length,
+          this.recommendStoreList.map((i) => i.idx)
+        );
         return {} as FoodStore;
       }
       return foodStore;
