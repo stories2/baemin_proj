@@ -14,6 +14,7 @@
           :key="nav"
           :title="nav"
           :isActive="activeNav == nav"
+          @click="activeNav = nav"
         ></nav-bar-btn>
       </b-col>
     </b-row>
