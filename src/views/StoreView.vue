@@ -72,7 +72,7 @@
 
 <script lang="ts">
 import { FoodMenu, FoodStore, OrderMenuModel } from "@/interface/order.model";
-import { addMenu, requestPayment } from "@/store";
+import { addMenu, requestPayment, setLastEnteredStoreName } from "@/store";
 import { defineComponent } from "vue";
 import { useDispath, useSelector } from "../helpers";
 import AdsBox from "@/components/AdsBox.vue";
@@ -117,6 +117,9 @@ export default defineComponent({
   },
   mounted() {
     console.log("mounted", this.floatingBtnRect, this.foodStore);
+    this.dispatch(
+      setLastEnteredStoreName({ storeName: this.foodStore.storeName })
+    );
   },
 
   computed: {
