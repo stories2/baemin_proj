@@ -128,6 +128,7 @@ export default defineComponent({
       this.dispatch(
         requestPayment({
           cost: this.paymentCost,
+          storeName: this.orders.lastEnteredStoreName,
         })
       );
     },

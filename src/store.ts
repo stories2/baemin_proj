@@ -107,15 +107,18 @@ export const orderSlice = createSlice({
     initPayment: (state: { IMP: any }, action: any) => {
       state.IMP.init("imp92079596");
     },
-    requestPayment: (state: any, action: { payload: { cost: number } }) => {
+    requestPayment: (
+      state: any,
+      action: { payload: { cost: number; storeName: string } }
+    ) => {
       console.log("req pay", state.IMP);
       state.IMP.request_pay(
         {
           // param
           pg: "html5_inicis",
           pay_method: "card",
-          merchant_uid: "ORD20180131-0000014",
-          name: "노르웨이 회전 의자",
+          merchant_uid: guid(),
+          name: `[${action.payload.storeName}] 배달의 민족 주문`,
           amount: action.payload.cost,
           buyer_email: "gildong@gmail.com",
           buyer_name: "홍길동",

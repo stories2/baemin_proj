@@ -187,14 +187,6 @@ export default defineComponent({
         );
       }
     },
-
-    test() {
-      this.dispatch(
-        requestPayment({
-          cost: 14900,
-        })
-      );
-    },
   },
 });
 </script>
