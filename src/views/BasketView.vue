@@ -20,6 +20,7 @@
             :id="order.guid"
             :name="order.name"
             :cost="order.cost"
+            :url="order.url"
             v-on:on-delete="onItemDelete"
           ></basket-item>
         </b-col>

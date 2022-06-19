@@ -2,9 +2,9 @@
   <div>
     <food-list-item
       id="fffff"
-      :name="'dummy'"
-      :cost="1234"
-      :url="'https://picsum.photos/200/200?_t=' + 1234"
+      :name="menu.name"
+      :cost="menu.cost"
+      :url="menu.url"
       style="position: fixed; opacity: 0.9; transition: transform linear 1.5s"
       v-bind:style="translateAnim"
       v-on:transitionend="$emit('transitionend')"
@@ -16,6 +16,7 @@
 import { defineComponent, PropType } from "vue";
 import FoodListItem from "@/components/FoodListItem.vue";
 import { Rect } from "../interface/box.model";
+import { FoodMenu } from "@/interface/order.model";
 
 //   v-bind:style="{
 //     backgroundImage: `url(${
@@ -37,6 +38,10 @@ export default defineComponent({
     },
     to: {
       type: Object as PropType<Rect>,
+      required: true,
+    },
+    menu: {
+      type: Object as PropType<FoodMenu>,
       required: true,
     },
   },

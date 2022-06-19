@@ -59,10 +59,11 @@
 
     <floating-btn ref="floatingBtn" @click="test()"></floating-btn>
 
-    <template v-if="startPoint">
+    <template v-if="startPoint && clickedMenu">
       <food-list-item-selected-anim
         :from="startPoint"
         :to="floatingBtnRect"
+        :menu="clickedMenu"
         v-on:transitionend="onTranslateEnd"
       ></food-list-item-selected-anim>
     </template>
@@ -70,7 +71,7 @@
 </template>
 
 <script lang="ts">
-import { FoodStore, OrderMenuModel } from "@/interface/order.model";
+import { FoodMenu, FoodStore, OrderMenuModel } from "@/interface/order.model";
 import { addMenu, requestPayment } from "@/store";
 import { defineComponent } from "vue";
 import { useDispath, useSelector } from "../helpers";
@@ -110,6 +111,7 @@ export default defineComponent({
       ],
 
       startPoint: null,
+      clickedMenu: {} as FoodMenu,
     };
   },
   mounted() {
@@ -145,17 +147,26 @@ export default defineComponent({
   methods: {
     onTranslateEnd() {
       this.startPoint = null;
+      this.clickedMenu = {} as FoodMenu;
     },
     onMenuClicked(menu: any) {
-      const { name: menuName, cost, el } = menu;
-      console.log("asdf", menuName, cost, el.getBoundingClientRect());
-      this.startPoint = el.getBoundingClientRect();
-      this.dispatch(
-        addMenu({
+      if (!this.startPoint) {
+        const { name: menuName, cost, url, el } = menu;
+        console.log("asdf", menuName, cost, el.getBoundingClientRect());
+        this.clickedMenu = {
           name: menuName,
           cost,
-        } as OrderMenuModel)
-      );
+          url,
+        } as FoodMenu;
+        this.startPoint = el.getBoundingClientRect();
+        this.dispatch(
+          addMenu({
+            name: menuName,
+            cost,
+            url,
+          } as OrderMenuModel)
+        );
+      }
     },
 
     test() {

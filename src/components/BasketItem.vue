@@ -10,7 +10,12 @@
     </b-row>
     <b-row>
       <b-col cols="2" md="4" lg="5">
-        <div class="food-img"></div>
+        <div
+          class="food-img"
+          v-bind:style="{
+            backgroundImage: 'url(' + url + ')',
+          }"
+        ></div>
       </b-col>
       <b-col>
         <b-row>
@@ -36,6 +41,7 @@ export default defineComponent({
     id: String,
     name: String,
     cost: Number,
+    url: String,
   },
 
   methods: {

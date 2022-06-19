@@ -3,6 +3,7 @@ export interface OrderMenuModel {
   description: string;
   cost: number;
   count: number;
+  url: string;
 
   options: OrderMenuOptionModel[];
 }
@@ -16,6 +17,7 @@ export interface OrderMenuOptionModel {
 export type FoodMenu = {
   name: string;
   cost: number;
+  url: string;
 };
 
 export type FoodStore = {
