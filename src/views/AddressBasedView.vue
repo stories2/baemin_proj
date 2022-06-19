@@ -1,32 +1,34 @@
 <template>
   <div>
     <in-app-top-bar :address="'방이동'" :url="'/'"></in-app-top-bar>
-    <menu-nav-bar v-on:nav-changed="onNavChanged"></menu-nav-bar>
-    <ads-box></ads-box>
-    <section-card>
-      <b-row>
-        <b-col>
-          <image-text-button
-            v-for="menu in menuList"
-            :key="menu"
-            :title="menu.title"
-            :imgUrl="menu.imgUrl"
-          ></image-text-button>
-        </b-col>
-      </b-row>
-    </section-card>
-    <section-card style="margin-top: 15px">
-      <horizontal-grid
-        :title="'배민1에 새로 들어왔어요'"
-        :storeList="orders.recommendStoreList"
-      ></horizontal-grid>
-    </section-card>
-    <section-card>
-      <store-big-card-grid
-        :storeList="storeList"
-        v-on:store-card-clicked="onStoreClicked"
-      ></store-big-card-grid>
-    </section-card>
+    <menu-nav-bar v-model:activeNav="activeNav"></menu-nav-bar>
+    <template v-if="activeNav == '배민1'">
+      <ads-box></ads-box>
+      <section-card>
+        <b-row>
+          <b-col>
+            <image-text-button
+              v-for="menu in menuList"
+              :key="menu"
+              :title="menu.title"
+              :imgUrl="menu.imgUrl"
+            ></image-text-button>
+          </b-col>
+        </b-row>
+      </section-card>
+      <section-card style="margin-top: 15px">
+        <horizontal-grid
+          :title="'배민1에 새로 들어왔어요'"
+          :storeList="orders.recommendStoreList"
+        ></horizontal-grid>
+      </section-card>
+      <section-card>
+        <store-big-card-grid
+          :storeList="storeList"
+          v-on:store-card-clicked="onStoreClicked"
+        ></store-big-card-grid>
+      </section-card>
+    </template>
   </div>
 </template>
 
@@ -61,6 +63,7 @@ export default defineComponent({
 
   data() {
     return {
+      activeNav: "배민1",
       orders: useSelector((state) => state.orders),
       recommendStoreList: useSelector((state) => state.orders).value
         .recommendStoreList,

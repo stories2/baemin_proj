@@ -32,9 +32,15 @@ export default defineComponent({
     NavBarBtn,
   },
 
+  props: {
+    activeNav: {
+      type: String,
+      default: "배민1",
+    },
+  },
+
   data() {
     return {
-      activeNav: "배민1",
       navList: [
         "배민1",
         "배달",
@@ -50,8 +56,7 @@ export default defineComponent({
 
   methods: {
     onMenuNavClicked(nav: string) {
-      this.activeNav = nav;
-      this.$emit("nav-changed", nav);
+      this.$emit("update:activeNav", nav);
     },
   },
 });
