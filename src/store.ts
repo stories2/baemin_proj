@@ -47,9 +47,17 @@ export const orderSlice = createSlice({
     IMP: (window as any).IMP,
     recommendStoreList: [] as FoodStore[],
     storeList: storeList,
-    focusedStore: {},
+    focusedStore: {} as FoodStore,
   },
   reducers: {
+    setFocusedStore: (
+      state: { focusedStore: FoodStore },
+      action: { payload: { storeData: FoodStore } }
+    ) => {
+      state.focusedStore = {
+        ...action.payload.storeData,
+      };
+    },
     setStoreList: (state: any, action: { payload: { storeListData: any } }) => {
       console.log("cost", action.payload.storeListData);
       state.recommendStoreList.length = 0;
@@ -58,6 +66,7 @@ export const orderSlice = createSlice({
         const deliveryMin = getRandomInt(0, 50) * 100;
         state.recommendStoreList.push({
           idx: guid(),
+          crtfc_upso_mgt_sno: store.crtfc_upso_mgt_sno,
           storeName: store.upso_nm,
           score: Number(getRandomArbitrary(0, 5).toFixed(2)),
           deliveryMin: deliveryMin,
@@ -186,6 +195,7 @@ export const {
   removeMenu,
   selectStoreInfo,
   setStoreList,
+  setFocusedStore,
 } = orderSlice.actions;
 
 export const store = configureStore({

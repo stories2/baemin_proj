@@ -96,6 +96,7 @@ export default defineComponent({
     return {
       dispatch: useDispath(),
       orders: useSelector((state) => state.orders),
+      currentStore: useSelector((state) => state.orders).value.focusedStore,
       recommendStoreList: useSelector((state) => state.orders).value
         .recommendStoreList,
 
@@ -115,7 +116,7 @@ export default defineComponent({
     };
   },
   mounted() {
-    console.log("mounted", this.floatingBtnRect);
+    console.log("mounted", this.floatingBtnRect, this.foodStore);
   },
 
   computed: {
@@ -125,19 +126,23 @@ export default defineComponent({
         console.warn(`[StoreView] [foodStore] storeidx is null`);
         return {} as FoodStore;
       }
-      const foodStore = this.recommendStoreList.find((i) => i.idx === storeIdx);
+      const foodStore = this.recommendStoreList.find(
+        (i) => i.crtfc_upso_mgt_sno == storeIdx
+      );
       console.warn(
         `[StoreView] [foodStore] testing`,
         storeIdx,
+        typeof storeIdx,
         this.recommendStoreList.length,
-        this.recommendStoreList.map((i) => i.idx)
+        this.recommendStoreList.map((i) => i.crtfc_upso_mgt_sno)
       );
+      // const foodStore = this.currentStore;
       if (!foodStore) {
         console.warn(
           `[StoreView] [foodStore] cannot find foodstore`,
           storeIdx,
           this.recommendStoreList.length,
-          this.recommendStoreList.map((i) => i.idx)
+          this.recommendStoreList.map((i) => i.crtfc_upso_mgt_sno)
         );
         return {} as FoodStore;
       }

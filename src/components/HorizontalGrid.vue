@@ -93,7 +93,7 @@ export default defineComponent({
   methods: {
     onGridItemClicked(store: any) {
       console.log("store", store);
-      this.$router.push(`/store/${store.idx}`);
+      this.$router.push(`/store/${store.crtfc_upso_mgt_sno}`);
     },
   },
 });

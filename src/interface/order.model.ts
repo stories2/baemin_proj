@@ -28,4 +28,5 @@ export type FoodStore = {
   deliveryMax: number;
   imgUrl: string;
   menuList: FoodMenu[];
+  crtfc_upso_mgt_sno: string;
 };
