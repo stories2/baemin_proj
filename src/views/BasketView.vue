@@ -26,7 +26,11 @@
         </b-col>
       </b-row>
       <hr />
-      <b-row style="text-align: center; font-weight: bold">
+      <b-row
+        style="text-align: center; font-weight: bold; cursor: pointer"
+        v-if="orders.lastEnteredStoreName && orders.lastEnteredStoreID !== ''"
+        @click="$router.push('/store/' + orders.lastEnteredStoreID)"
+      >
         <b-col> <BIconPlusLg /> 더 담으러 가기 </b-col>
       </b-row>
     </section-card>

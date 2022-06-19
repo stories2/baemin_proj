@@ -118,7 +118,10 @@ export default defineComponent({
   mounted() {
     console.log("mounted", this.floatingBtnRect, this.foodStore);
     this.dispatch(
-      setLastEnteredStoreName({ storeName: this.foodStore.storeName })
+      setLastEnteredStoreName({
+        storeName: this.foodStore.storeName,
+        storeID: Number(this.foodStore.crtfc_upso_mgt_sno),
+      })
     );
   },
 
