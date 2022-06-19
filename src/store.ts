@@ -48,8 +48,15 @@ export const orderSlice = createSlice({
     recommendStoreList: [] as FoodStore[],
     storeList: storeList,
     focusedStore: {} as FoodStore,
+    lastEnteredStoreName: "",
   },
   reducers: {
+    setLastEnteredStoreName: (
+      state: { lastEnteredStoreName: string },
+      action: { payload: { storeName: string } }
+    ) => {
+      state.lastEnteredStoreName = action.payload.storeName;
+    },
     setFocusedStore: (
       state: { focusedStore: FoodStore },
       action: { payload: { storeData: FoodStore } }
@@ -196,6 +203,7 @@ export const {
   selectStoreInfo,
   setStoreList,
   setFocusedStore,
+  setLastEnteredStoreName,
 } = orderSlice.actions;
 
 export const store = configureStore({

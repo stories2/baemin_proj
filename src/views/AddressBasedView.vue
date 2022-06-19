@@ -40,7 +40,11 @@ import HorizontalGrid from "@/components/HorizontalGrid.vue";
 import StoreBigCardGrid from "@/components/StoreBigCardGrid.vue";
 import { defineComponent } from "vue";
 import { useDispath, useSelector } from "../helpers";
-import { selectStoreInfo, setFocusedStore } from "@/store";
+import {
+  selectStoreInfo,
+  setFocusedStore,
+  setLastEnteredStoreName,
+} from "@/store";
 import { FoodStore } from "@/interface/order.model";
 
 export default defineComponent({
@@ -132,9 +136,9 @@ export default defineComponent({
   methods: {
     onStoreClicked(storeData: FoodStore) {
       console.log("store", storeData);
-      console.log(this.dispatch(selectStoreInfo({ idx: storeData.idx })));
-      console.log("focusedStore", this.focusedStore);
-      this.dispatch(setFocusedStore({ storeData }));
+      // console.log(this.dispatch(selectStoreInfo({ idx: storeData.idx })));
+      // console.log("focusedStore", this.focusedStore);
+      // this.dispatch(setFocusedStore({ storeData }));
     },
   },
 });

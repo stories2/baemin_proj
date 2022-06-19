@@ -32,6 +32,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import GridItem from "./GridItem.vue";
+import { useDispath, useSelector } from "../helpers";
+import { setLastEnteredStoreName } from "@/store";
 
 export default defineComponent({
   name: "HorizontalGrid",
@@ -45,54 +47,14 @@ export default defineComponent({
 
   data() {
     return {
-      // storeList: [
-      //   {
-      //     imgUrl:
-      //       "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
-      //     storeName: "제비 파스타&리조또 강동점",
-      //     score: 5.0,
-      //     deliveryMin: 0,
-      //     deliveryMax: 0,
-      //   },
-      //   {
-      //     imgUrl:
-      //       "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
-      //     storeName: "제비 파스타&리조또 강동점",
-      //     score: 5.0,
-      //     deliveryMin: 0,
-      //     deliveryMax: 1900,
-      //   },
-      //   {
-      //     imgUrl:
-      //       "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
-      //     storeName: "제비 파스타&리조또 강동점",
-      //     score: 5.0,
-      //     deliveryMin: 0,
-      //     deliveryMax: 1900,
-      //   },
-      //   {
-      //     imgUrl:
-      //       "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
-      //     storeName: "제비 파스타&리조또 강동점",
-      //     score: 5.0,
-      //     deliveryMin: 0,
-      //     deliveryMax: 1900,
-      //   },
-      //   {
-      //     imgUrl:
-      //       "https://byline.network/wp-content/uploads/2020/01/baemin-300x300.png",
-      //     storeName: "제비 파스타&리조또 강동점",
-      //     score: 5.0,
-      //     deliveryMin: 0,
-      //     deliveryMax: 1900,
-      //   },
-      // ],
+      dispatch: useDispath(),
     };
   },
 
   methods: {
     onGridItemClicked(store: any) {
       console.log("store", store);
+      this.dispatch(setLastEnteredStoreName({ storeName: store.storeName }));
       this.$router.push(`/store/${store.crtfc_upso_mgt_sno}`);
     },
   },

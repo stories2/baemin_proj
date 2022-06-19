@@ -10,7 +10,7 @@
     <section-card style="text-align: left">
       <b-row>
         <b-col>
-          <h4>하루엔소쿠 길동점</h4>
+          <h4>{{ orders.lastEnteredStoreName || "Untitled" }}</h4>
         </b-col>
       </b-row>
       <hr />
