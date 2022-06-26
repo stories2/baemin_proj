@@ -121,16 +121,16 @@ export class KakaoMap {
     customOverlay.data = item;
     customOverlay.setVisible(false);
     // https://devtalk.kakao.com/t/topic/44205/8
-    customOverlay.a
-      .querySelector("span#close")
-      .addEventListener("click", (e: any) => {
-        customOverlay.setVisible(!customOverlay.getVisible());
-      });
-    customOverlay.a.querySelector("p").addEventListener("click", (e: any) => {
-      if (this.onCustomOverlayClicked) {
-        // this.onCustomOverlayClicked(item.id);
-      }
-    });
+    // customOverlay.a
+    //   .querySelector("span#close")
+    //   .addEventListener("click", (e: any) => {
+    //     customOverlay.setVisible(!customOverlay.getVisible());
+    //   });
+    // customOverlay.a.querySelector("p").addEventListener("click", (e: any) => {
+    //   if (this.onCustomOverlayClicked) {
+    //     // this.onCustomOverlayClicked(item.id);
+    //   }
+    // });
     customOverlay.setMap(this.map);
     this.customOverlayList.push(customOverlay);
     return customOverlay;
@@ -199,11 +199,11 @@ export class KakaoMap {
 
     const marker = new this.kakao.maps.Marker({
       position: markerPosition,
-      image: icon,
+      // image: icon,
     });
     this.kakao.maps.event.addListener(marker, "click", () => {
       const linkedCustomOverlay = this.customOverlayList.find(
-        (overlay) => overlay.data.id === id
+        (overlay) => overlay.data.idx === id
       );
 
       if (id === this.beforeMarkerId) {
@@ -213,7 +213,7 @@ export class KakaoMap {
         if (!linkedCustomOverlay.getVisible()) {
           // this.onMarkerClicked(id);
           this.focusedMarkerID = id;
-          this.focusedCustomOverlayID = linkedCustomOverlay.data.id;
+          this.focusedCustomOverlayID = linkedCustomOverlay.data.idx;
         } else {
           this.focusedMarkerID = null;
           this.focusedCustomOverlayID = null;
@@ -228,7 +228,7 @@ export class KakaoMap {
       }
 
       const previousCustomOverlay = this.customOverlayList.find(
-        (overlay) => overlay.data.id === this.beforeMarkerId
+        (overlay) => overlay.data.idx === this.beforeMarkerId
       );
 
       if (previousCustomOverlay) {

@@ -2,6 +2,11 @@
   <div>
     <in-app-top-bar :address="'방이동'" :url="'/'"></in-app-top-bar>
     <menu-nav-bar v-model:activeNav="activeNav"></menu-nav-bar>
+    <template v-if="activeNav == '포장'">
+      <kakao-map-component
+        :foodStoreList="orders.recommendStoreList"
+      ></kakao-map-component>
+    </template>
     <template v-if="activeNav == '배민1'">
       <ads-box></ads-box>
       <section-card>
@@ -28,9 +33,6 @@
           v-on:store-card-clicked="onStoreClicked"
         ></store-big-card-grid>
       </section-card>
-    </template>
-    <template v-if="activeNav == '포장'">
-      <kakao-map-component></kakao-map-component>
     </template>
   </div>
 </template>
@@ -68,7 +70,7 @@ export default defineComponent({
 
   data() {
     return {
-      activeNav: "배민1",
+      activeNav: "포장",
       orders: useSelector((state) => state.orders),
       recommendStoreList: useSelector((state) => state.orders).value
         .recommendStoreList,
