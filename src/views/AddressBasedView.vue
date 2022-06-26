@@ -29,6 +29,9 @@
         ></store-big-card-grid>
       </section-card>
     </template>
+    <template v-if="activeNav == '포장'">
+      <kakao-map-component></kakao-map-component>
+    </template>
   </div>
 </template>
 
@@ -40,6 +43,7 @@ import ImageTextButton from "@/components/ImageTextButton.vue";
 import SectionCard from "@/components/SectionCard.vue";
 import HorizontalGrid from "@/components/HorizontalGrid.vue";
 import StoreBigCardGrid from "@/components/StoreBigCardGrid.vue";
+import KakaoMapComponent from "@/components/KakaoMapComponent.vue";
 import { defineComponent } from "vue";
 import { useDispath, useSelector } from "../helpers";
 import {
@@ -58,6 +62,7 @@ export default defineComponent({
     SectionCard,
     HorizontalGrid,
     StoreBigCardGrid,
+    KakaoMapComponent,
   },
   name: "AddressBasedView",
 
