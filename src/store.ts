@@ -88,6 +88,8 @@ export const orderSlice = createSlice({
               cost: getRandomInt(0, 50) * 100,
             } as FoodMenu;
           }),
+          lat: store.y_dnts,
+          long: store.x_cnts,
         } as FoodStore);
       });
       console.log("len", state.recommendStoreList.length);
