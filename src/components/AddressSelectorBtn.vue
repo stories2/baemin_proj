@@ -59,9 +59,9 @@ export default defineComponent({
 
     loadLastLocation() {
       this.addrStr =
-        localStorage.getItem("addressFull") || "서울 송파구 방이동";
+        localStorage.getItem("addressFull") || "서울 중구 태평로2가";
       this.region_2depth_name =
-        localStorage.getItem("region_2depth_name") || "송파구";
+        localStorage.getItem("region_2depth_name") || "중구";
       console.log("add", this.addrStr, this.region_2depth_name);
     },
 

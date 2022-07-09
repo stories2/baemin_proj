@@ -47,8 +47,10 @@ export default defineComponent({
   mounted() {
     this.map = new KakaoMap(
       this.$refs.kakaoMap,
-      this.addressGeoData.lat || Number(localStorage.getItem("lat")),
-      this.addressGeoData.long || Number(localStorage.getItem("long")),
+      this.addressGeoData.lat ||
+        Number(localStorage.getItem("lat") || 37.5666805),
+      this.addressGeoData.long ||
+        Number(localStorage.getItem("long") || 126.9784147),
       4
     );
     this.map.setMarkerList(this.foodStoreMarkerList);
