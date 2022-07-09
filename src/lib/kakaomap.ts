@@ -184,6 +184,19 @@ export class KakaoMap {
       this.focusedCustomOverlayID && removeExcludeFocusedItem ? 1 : 0;
   }
 
+  resetFocusedCustomOverlay() {
+    if (!this.beforeMarkerId) {
+      return;
+    }
+    const previousCustomOverlay = this.customOverlayList.find(
+      (overlay) => overlay.data.idx === this.beforeMarkerId
+    );
+
+    if (previousCustomOverlay && previousCustomOverlay.getVisible()) {
+      previousCustomOverlay.setVisible(false);
+    }
+  }
+
   testClick() {
     // console.log(this.markerList[0].Ec.parentNode, this.markerList[0].Ec.parentNode.click())
     this.kakao.maps.event.trigger(this.markerList[1], "click");
@@ -265,6 +278,7 @@ export class KakaoMap {
     if (!array || array.length < 0) {
       throw new Error(`Unexpected array detected`);
     }
+    this.resetFocusedCustomOverlay();
 
     array.forEach((item) => {
       this.addMarker(item.lat, item.lot, item.id);
