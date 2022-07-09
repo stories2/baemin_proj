@@ -105,6 +105,22 @@ export class KakaoMap {
         background-size: cover;
         position: relative;
         " data-overlay="${item.idx}">
+        
+        <div style="
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    line-height: 150px;
+    overflow: hidden;
+    text-overflow:
+    ellipsis;
+    white-space:
+    nowrap;
+    padding: 5px;
+">${item.storeName}</div>
         </div>
     `;
   }

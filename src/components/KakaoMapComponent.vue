@@ -29,7 +29,7 @@ export default defineComponent({
     foodStoreList: function (newVal) {
       //   console.log("asdfas", newVal);
       this.map.setMarkerList(this.foodStoreMarkerList);
-      this.map.setCustomOverlayList(this.foodStoreList);
+      this.map.setCustomOverlayList(this.foodStoreListMapped);
     },
     addressGeoData: function (newVal: AddressLatLong) {
       console.log("addressGeoData", newVal);
@@ -52,17 +52,26 @@ export default defineComponent({
       4
     );
     this.map.setMarkerList(this.foodStoreMarkerList);
-    this.map.setCustomOverlayList(this.foodStoreList);
+    this.map.setCustomOverlayList(this.foodStoreListMapped);
   },
 
   computed: {
     foodStoreMarkerList() {
+      // console.log("ff", this.foodStoreList);
       return this.foodStoreList.map((store) => {
         return {
           lat: store.lat,
           lot: store.long,
-          id: store.idx,
+          id: store.crtfc_upso_mgt_sno.toString(),
         };
+      });
+    },
+    foodStoreListMapped(): FoodStore[] {
+      return this.foodStoreList.map((store) => {
+        return {
+          ...store,
+          idx: store.crtfc_upso_mgt_sno.toString(),
+        } as FoodStore;
       });
     },
   },
