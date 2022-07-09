@@ -68,6 +68,7 @@ export default defineComponent({
           md: 12,
           lg: 8,
           xl: 6,
+          url: "/address-based?tab=포장",
         },
         {
           title: "B마트",

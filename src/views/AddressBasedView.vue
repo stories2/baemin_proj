@@ -66,7 +66,7 @@ export default defineComponent({
 
   data() {
     return {
-      activeNav: "포장",
+      activeNav: this.$route.query.tab || "배민1",
       orders: useSelector((state) => state.orders),
       recommendStoreList: useSelector((state) => state.orders).value
         .recommendStoreList,
