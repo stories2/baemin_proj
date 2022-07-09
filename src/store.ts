@@ -1,6 +1,7 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { FoodMenu, FoodStore, OrderMenuModel } from "./interface/order.model";
 import { recommendStoreList, storeList } from "./db";
+import { AddressLatLong } from "./interface/geo.model";
 
 // https://velog.io/@gsh723/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC-Redux-Toolkit-%EC%9D%B4%EB%9E%80
 // action + reduce = slice
@@ -50,8 +51,15 @@ export const orderSlice = createSlice({
     focusedStore: {} as FoodStore,
     lastEnteredStoreName: "",
     lastEnteredStoreID: 0,
+    userGeoData: {} as AddressLatLong,
   },
   reducers: {
+    setUserGeoData: (
+      state: { userGeoData: AddressLatLong },
+      action: { payload: { geoData: AddressLatLong } }
+    ) => {
+      state.userGeoData = action.payload.geoData;
+    },
     setLastEnteredStoreName: (
       state: { lastEnteredStoreName: string; lastEnteredStoreID: number },
       action: { payload: { storeName: string; storeID: number } }
@@ -211,6 +219,7 @@ export const {
   setStoreList,
   setFocusedStore,
   setLastEnteredStoreName,
+  setUserGeoData,
 } = orderSlice.actions;
 
 export const store = configureStore({
