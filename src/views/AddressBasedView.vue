@@ -4,6 +4,7 @@
     <menu-nav-bar v-model:activeNav="activeNav"></menu-nav-bar>
     <template v-if="activeNav == '포장'">
       <kakao-map-component
+        :addressGeoData="orders.userGeoData"
         :foodStoreList="orders.recommendStoreList"
       ></kakao-map-component>
     </template>
@@ -48,11 +49,6 @@ import StoreBigCardGrid from "@/components/StoreBigCardGrid.vue";
 import KakaoMapComponent from "@/components/KakaoMapComponent.vue";
 import { defineComponent } from "vue";
 import { useDispath, useSelector } from "../helpers";
-import {
-  selectStoreInfo,
-  setFocusedStore,
-  setLastEnteredStoreName,
-} from "@/store";
 import { FoodStore } from "@/interface/order.model";
 
 export default defineComponent({

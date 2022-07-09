@@ -31,6 +31,8 @@ import { AddressLatLong } from "@/interface/geo.model";
 import { defineComponent } from "vue";
 import { KakaoMap } from "../lib/kakaomap";
 import { Permission } from "../lib/permission";
+import { useDispath, useSelector } from "../helpers";
+import { setUserGeoData } from "@/store";
 
 export default defineComponent({
   name: "AddressModal",
@@ -39,6 +41,7 @@ export default defineComponent({
     return {
       address: "",
       kakaoMap: {},
+      dispatch: useDispath(),
     };
   },
 
@@ -61,6 +64,8 @@ export default defineComponent({
           }
         })
         .then((addrInfo: any) => {
+          result.lat = addrInfo.y;
+          result.long = addrInfo.x;
           return (this.kakaoMap as any).coord2RegionCode({
             lat: addrInfo.y,
             long: addrInfo.x,
@@ -86,6 +91,13 @@ export default defineComponent({
             // zip_code: ""
             console.log(result);
             this.$emit("address-load", result);
+            localStorage.setItem("lat", result.lat.toString());
+            localStorage.setItem("long", result.long.toString());
+            this.dispatch(
+              setUserGeoData({
+                geoData: result,
+              })
+            );
 
             this.address = `${result.region_1depth_name} ${result.region_2depth_name} ${result.region_3depth_name}`;
           } else {
@@ -147,6 +159,13 @@ export default defineComponent({
             // zip_code: ""
             console.log(result);
             this.$emit("address-load", result);
+            localStorage.setItem("lat", result.lat.toString());
+            localStorage.setItem("long", result.long.toString());
+            this.dispatch(
+              setUserGeoData({
+                geoData: result,
+              })
+            );
 
             this.address = `${result.region_1depth_name} ${result.region_2depth_name} ${result.region_3depth_name}`;
           } else {

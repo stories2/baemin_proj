@@ -7,6 +7,7 @@
 </template>
 
 <script lang="ts">
+import { AddressLatLong } from "@/interface/geo.model";
 import { FoodStore } from "@/interface/order.model";
 import { KakaoMap } from "@/lib/kakaomap";
 import { defineComponent, PropType } from "vue";
@@ -18,6 +19,10 @@ export default defineComponent({
       type: Object as PropType<FoodStore[]>,
       required: true,
     },
+    addressGeoData: {
+      type: Object as PropType<AddressLatLong>,
+      required: true,
+    },
   },
 
   watch: {
@@ -25,6 +30,11 @@ export default defineComponent({
       //   console.log("asdfas", newVal);
       this.map.setMarkerList(this.foodStoreMarkerList);
       this.map.setCustomOverlayList(this.foodStoreList);
+    },
+    addressGeoData: function (newVal: AddressLatLong) {
+      console.log("addressGeoData", newVal);
+      this.map.moveCenter(newVal.lat, newVal.long);
+      this.map.setZoom(4);
     },
   },
 
@@ -35,7 +45,12 @@ export default defineComponent({
   },
 
   mounted() {
-    this.map = new KakaoMap(this.$refs.kakaoMap, 37.5666805, 126.9784147, 7);
+    this.map = new KakaoMap(
+      this.$refs.kakaoMap,
+      this.addressGeoData.lat || Number(localStorage.getItem("lat")),
+      this.addressGeoData.long || Number(localStorage.getItem("long")),
+      4
+    );
     this.map.setMarkerList(this.foodStoreMarkerList);
     this.map.setCustomOverlayList(this.foodStoreList);
   },
