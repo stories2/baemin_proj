@@ -27,6 +27,7 @@
 </template>
 
 <script lang="ts">
+import { AddressLatLong } from "@/interface/geo.model";
 import { defineComponent } from "vue";
 import { KakaoMap } from "../lib/kakaomap";
 import { Permission } from "../lib/permission";
@@ -47,19 +48,7 @@ export default defineComponent({
 
   methods: {
     submitAddressSearch() {
-      let result = {
-        lat: 0,
-        long: 0,
-        address_name: "",
-        main_address_no: "",
-        mountain_yn: "",
-        region_1depth_name: "",
-        region_2depth_name: "",
-        region_3depth_name: "",
-        sub_address_no: "",
-        zip_code: "",
-      };
-      console.log("asdf");
+      let result: AddressLatLong = {} as AddressLatLong;
       (this.kakaoMap as any)
         .addressSearch(this.address)
         .then((addrResponse: any) => {
@@ -115,18 +104,7 @@ export default defineComponent({
       //   (this.$refs as any).addressModal.hide();
     },
     getUserLocation() {
-      let result = {
-        lat: 0,
-        long: 0,
-        address_name: "",
-        main_address_no: "",
-        mountain_yn: "",
-        region_1depth_name: "",
-        region_2depth_name: "",
-        region_3depth_name: "",
-        sub_address_no: "",
-        zip_code: "",
-      };
+      let result: AddressLatLong = {} as AddressLatLong;
       const per = new Permission();
       //   => {
       //     if (pos) {

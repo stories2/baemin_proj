@@ -20,6 +20,7 @@ import { KakaoMap } from "../lib/kakaomap";
 import { DatabaseDao } from "../lib/realtime-database";
 import { useDispath, useSelector } from "../helpers";
 import { setStoreList } from "@/store";
+import { AddressLatLong } from "@/interface/geo.model";
 
 export default defineComponent({
   name: "AddressSelectBtn",
@@ -73,7 +74,7 @@ export default defineComponent({
       });
     },
 
-    onAddressLoaded(addressInfo: any) {
+    onAddressLoaded(addressInfo: AddressLatLong) {
       console.log("addressInfo", addressInfo);
       this.loadFilteredStoreList(addressInfo.region_2depth_name);
       this.addrStr = `${addressInfo.region_1depth_name} ${addressInfo.region_2depth_name} ${addressInfo.region_3depth_name}`;
