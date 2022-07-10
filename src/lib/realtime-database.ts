@@ -47,22 +47,19 @@ export class DatabaseDao {
       .then((snapshot) => {
         if (snapshot.exists()) {
           const snapshotData = snapshot.val();
-          console.log("val", snapshotData);
+          // console.log("val", snapshotData);
           const storeList: any[] = [];
           Object.keys(snapshotData).forEach((key) => {
             storeList.push(snapshotData[key]);
           });
-          console.log(
-            "offset",
-            offset,
-            pageSize,
-            storeList.length,
-            Math.min(offset + pageSize, storeList.length)
-          );
-          return storeList.slice(
-            0,
-            Math.min(offset + pageSize, storeList.length)
-          );
+          // console.log(
+          //   "offset",
+          //   offset,
+          //   pageSize,
+          //   storeList.length,
+          //   Math.min(offset + pageSize, storeList.length)
+          // );
+          return storeList;
         } else {
           console.warn("No data available");
           return [];
