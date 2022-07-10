@@ -3,18 +3,27 @@
     class="grid-item"
     style="text-align: center; margin-right: 15px; cursor: pointer"
   >
-    <img :src="imgUrl" />
-    <div style="height: 32px; line-height: 32px">
-      <span class="store-name">{{ storeName }}</span>
-      <span class="star-score">
-        <BIconStarFill /><span style="margin-left: 5px">{{ score }}</span></span
-      >
-    </div>
-    <div>
-      <span style="margin-right: 5px; color: #999">배달팁</span
-      ><span>{{ deliveryMin.toLocaleString() }}원</span>
-      <span v-if="deliveryMax"> ~ {{ deliveryMax.toLocaleString() }}원</span>
-    </div>
+    <template v-if="storeName">
+      <img :src="imgUrl" />
+      <div style="height: 32px; line-height: 32px">
+        <span class="store-name">{{ storeName }}</span>
+        <span class="star-score">
+          <BIconStarFill /><span style="margin-left: 5px">{{
+            score
+          }}</span></span
+        >
+      </div>
+      <div>
+        <span style="margin-right: 5px; color: #999">배달팁</span
+        ><span>{{ deliveryMin.toLocaleString() }}원</span>
+        <span v-if="deliveryMax"> ~ {{ deliveryMax.toLocaleString() }}원</span>
+      </div>
+    </template>
+    <template v-else>
+      <img :src="require('@/assets/plus.png')" />
+      <div style="height: 32px; line-height: 32px">더 불러오기</div>
+      <div>---</div>
+    </template>
   </div>
 </template>
 
