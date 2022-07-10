@@ -1,5 +1,7 @@
 import { FoodStore } from "@/interface/order.model";
 
+export type CustomOverlayFunc = (store: FoodStore) => void;
+
 // import { KakaoMap } from "./lib/kakaomap";
 export class KakaoMap {
   container;
@@ -11,13 +13,19 @@ export class KakaoMap {
   beforeMarkerId: string | null = null;
   prefix = "id-";
   onMarkerClicked = null;
-  onCustomOverlayClicked = null;
+  onCustomOverlayClicked: CustomOverlayFunc | undefined;
 
   focusedMarkerID: string | null = null;
   focusedCustomOverlayID = null;
 
   // const kakaoMap = new KakaoMap(this.$refs.map, 33.450701, 126.570667, 3);
-  constructor(refEle: any, lat: number, long: number, lv: number) {
+  constructor(
+    refEle: any,
+    lat: number,
+    long: number,
+    lv: number,
+    onCustomOverlayClicked?: CustomOverlayFunc
+  ) {
     this.container = refEle;
     this.kakao = (window as any).kakao;
     const options = {
@@ -29,6 +37,7 @@ export class KakaoMap {
     this.map = new this.kakao.maps.Map(this.container, options); //지도 생성 및 객체 리턴
 
     this.geocoder = new this.kakao.maps.services.Geocoder();
+    this.onCustomOverlayClicked = onCustomOverlayClicked;
   }
 
   coord2RegionCode(latlong: any) {
@@ -136,6 +145,13 @@ export class KakaoMap {
     });
     customOverlay.data = item;
     customOverlay.setVisible(false);
+    // console.log("ele", customOverlay.a.querySelector("div"));
+    customOverlay.a.querySelector("div").addEventListener("click", (e: any) => {
+      // console.log("click", item);
+      if (this.onCustomOverlayClicked) {
+        this.onCustomOverlayClicked(item);
+      }
+    });
     // https://devtalk.kakao.com/t/topic/44205/8
     // customOverlay.a
     //   .querySelector("span#close")

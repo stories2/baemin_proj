@@ -51,10 +51,18 @@ export default defineComponent({
         Number(localStorage.getItem("lat") || 37.5666805),
       this.addressGeoData.long ||
         Number(localStorage.getItem("long") || 126.9784147),
-      4
+      4,
+      this.onMarkerClicked
     );
     this.map.setMarkerList(this.foodStoreMarkerList);
     this.map.setCustomOverlayList(this.foodStoreListMapped);
+  },
+
+  methods: {
+    onMarkerClicked(item: FoodStore) {
+      // console.log("item", item);
+      this.$router.push(`/store/${item.crtfc_upso_mgt_sno}`);
+    },
   },
 
   computed: {
