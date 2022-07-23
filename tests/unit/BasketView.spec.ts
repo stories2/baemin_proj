@@ -50,4 +50,20 @@ describe("HelloWorld.vue", () => {
 
     expect(wrapper.vm.sumCost).toEqual(0);
   });
+
+  it("If orderlist is empty then sum should be returns 0", () => {
+    const wrapper = shallowMount(BasketView, {
+      data: function () {
+        return {
+          dispatch: null,
+          orderList: null,
+          orders: {
+            orderList: [],
+          },
+        };
+      },
+    });
+
+    expect(wrapper.vm.sumCost).toEqual(0);
+  });
 });
