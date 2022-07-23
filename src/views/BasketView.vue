@@ -97,7 +97,7 @@ export default defineComponent({
     return {
       dispatch: useDispath(),
       orders: useSelector((state) => state.orders),
-      orderList: useSelector((state) => state.orders).value.orderList,
+      // orderList: useSelector((state) => state.orders).value.orderList,
       orderListTest: [
         {
           id: "test1",
@@ -151,9 +151,9 @@ export default defineComponent({
     sumCost(): number {
       return this.orders.orderList.reduce((a, b) => a + b.cost, 0);
     },
-    orderListRedux(): any {
-      return this.orderList;
-    },
+    // orderListRedux(): any {
+    //   return this.orderList;
+    // },
     paymentCost(): number {
       return this.sumCost + this.deliveryTip;
     },
