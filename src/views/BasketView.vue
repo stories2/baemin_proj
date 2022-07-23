@@ -63,6 +63,7 @@
     <b-row align-h="end">
       <b-col style="text-align: right" cols="12" md="6" lg="3">
         <b-button
+          v-if="orders.orderList"
           :disabled="orders.orderList.length <= 0"
           class="payment-btn"
           @click="startPayment()"
@@ -149,6 +150,9 @@ export default defineComponent({
 
   computed: {
     sumCost(): number {
+      if (!this.orders.orderList) {
+        return 0;
+      }
       return this.orders.orderList.reduce((a, b) => a + b.cost, 0);
     },
     // orderListRedux(): any {
